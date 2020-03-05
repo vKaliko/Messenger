@@ -10,13 +10,13 @@
 		0BFEC0A48E630240058D97DC /* Pods_Messenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E49083955AB56E35B7B75C /* Pods_Messenger.framework */; };
 		105F88BD240D7C86005AA9F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105F88BC240D7C86005AA9F4 /* AppDelegate.swift */; };
 		105F88BF240D7C86005AA9F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105F88BE240D7C86005AA9F4 /* SceneDelegate.swift */; };
-		105F88C1240D7C86005AA9F4 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105F88C0240D7C86005AA9F4 /* FirstViewController.swift */; };
-		105F88C3240D7C86005AA9F4 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105F88C2240D7C86005AA9F4 /* SecondViewController.swift */; };
 		105F88C6240D7C86005AA9F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 105F88C4240D7C86005AA9F4 /* Main.storyboard */; };
 		105F88C8240D7C89005AA9F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 105F88C7240D7C89005AA9F4 /* Assets.xcassets */; };
 		105F88CB240D7C89005AA9F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 105F88C9240D7C89005AA9F4 /* LaunchScreen.storyboard */; };
 		105F88D3240D7D73005AA9F4 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 105F88D2240D7D73005AA9F4 /* Podfile */; };
 		105F88D5240EAFCE005AA9F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 105F88D4240EAFCE005AA9F4 /* GoogleService-Info.plist */; };
+		1090761B2411632A0016CB98 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1090761A2411632A0016CB98 /* ChatViewController.swift */; };
+		1090762124116CD40016CB98 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1090762024116CD40016CB98 /* MessageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,14 +24,14 @@
 		105F88B9240D7C86005AA9F4 /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		105F88BC240D7C86005AA9F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		105F88BE240D7C86005AA9F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		105F88C0240D7C86005AA9F4 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		105F88C2240D7C86005AA9F4 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		105F88C5240D7C86005AA9F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		105F88C7240D7C89005AA9F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		105F88CA240D7C89005AA9F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		105F88CC240D7C89005AA9F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		105F88D2240D7D73005AA9F4 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		105F88D4240EAFCE005AA9F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1090761A2411632A0016CB98 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		1090762024116CD40016CB98 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MessageCell.swift; path = /Users/vanyakaliko/Documents/Projects/Messenger/Messenger/MessageCell.swift; sourceTree = "<absolute>"; };
 		5DF59499E264D54FE41ED6DA /* Pods-Messenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.release.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.release.xcconfig"; sourceTree = "<group>"; };
 		849744ED1BC5BF6492EEDDDC /* Pods-Messenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.debug.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,8 +80,8 @@
 				105F88D2240D7D73005AA9F4 /* Podfile */,
 				105F88BC240D7C86005AA9F4 /* AppDelegate.swift */,
 				105F88BE240D7C86005AA9F4 /* SceneDelegate.swift */,
-				105F88C0240D7C86005AA9F4 /* FirstViewController.swift */,
-				105F88C2240D7C86005AA9F4 /* SecondViewController.swift */,
+				1090761A2411632A0016CB98 /* ChatViewController.swift */,
+				1090762024116CD40016CB98 /* MessageCell.swift */,
 				105F88C4240D7C86005AA9F4 /* Main.storyboard */,
 				105F88C7240D7C89005AA9F4 /* Assets.xcassets */,
 				105F88C9240D7C89005AA9F4 /* LaunchScreen.storyboard */,
@@ -217,9 +217,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				105F88C3240D7C86005AA9F4 /* SecondViewController.swift in Sources */,
-				105F88C1240D7C86005AA9F4 /* FirstViewController.swift in Sources */,
 				105F88BD240D7C86005AA9F4 /* AppDelegate.swift in Sources */,
+				1090762124116CD40016CB98 /* MessageCell.swift in Sources */,
+				1090761B2411632A0016CB98 /* ChatViewController.swift in Sources */,
 				105F88BF240D7C86005AA9F4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,14 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         let db = Firestore.firestore()
-        db.collection("message").whereField("id", isEqualTo: "SvgbMNLtdxPgcUKsGUmp")
-            .getDocuments() { (querySnapshot, err) in
+        db.collection("message").document("SvgbMNLtdxPgcUKsGUmp")
+            .getDocument() { (document, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
-                } else {
-                    for document in querySnapshot!.documents {
-                        print("\(document.documentID) => \(document.data())")
-                    }
+                }
+                
+                else {
+                    print("\(document!.documentID) => \(document!.data())")
                 }
         }
         return true
