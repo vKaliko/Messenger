@@ -7,20 +7,37 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
+
+
 
 class ChatViewController: UITableViewController {
     
-    var messages = ["Message 1", "Message 2", "Message 3", "Message 4" ]
-    
+    var messages = [[String: Any]]()
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FirebaseApp.configure()
+        let db = Firestore.firestore()
+        db.collection("message").order(by: "time").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                var dicts = [[String: Any]]()
+                for document in querySnapshot!.documents {
+                    let d = document.data()
+                    dicts.append(d)
+                }
+                self.messages = dicts
+                self.tableView.reloadData()
+            }
+            
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        }
+   
+        
     }
 
     // MARK: - Table view data source
@@ -37,10 +54,13 @@ class ChatViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let d = messages[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
-        cell.messageLabel.text = messages[indexPath.row]
         
-
+        cell.messageLabel.text = d["text"] as! String
+        let timestamp = d["time"] as! Timestamp
+        cell.timestampLabel.text = "\(timestamp.dateValue())"
+         
         return cell
     }
    

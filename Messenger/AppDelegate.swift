@@ -17,18 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
-        let db = Firestore.firestore()
-        db.collection("message").document("SvgbMNLtdxPgcUKsGUmp")
-            .getDocument() { (document, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                }
-                
-                else {
-                    print("\(document!.documentID) => \(document!.data())")
-                }
-        }
+//        FirebaseApp.configure()
+//        let db = Firestore.firestore()
+//        db.collection("message").document("SvgbMNLtdxPgcUKsGUmp")
+//            .getDocument() { (document, err) in
+//                if let err = err {
+//                    print("Error getting documents: \(err)")
+//                }
+//
+//                else {
+//                    print("\(document!.documentID) => \(document!.data())")
+//                }
+//        }
         return true
     }
 

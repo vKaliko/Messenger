@@ -10,5 +10,5 @@ import UIKit
 class MessageCell: UITableViewCell {
     
     @IBOutlet weak var messageLabel: UILabel!
-
+    @IBOutlet weak var timestampLabel: UILabel!
 }

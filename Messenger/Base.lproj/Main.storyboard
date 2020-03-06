@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Messages-->
         <scene sceneID="nFH-zD-udA">
             <objects>
                 <tableViewController id="Oer-0b-9KN" customClass="ChatViewController" customModule="Messenger" customModuleProvider="target" sceneMemberID="viewController">
@@ -15,29 +15,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="90" id="6D0-d4-SMN" customClass="MessageCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="90" id="6D0-d4-SMN" customClass="MessageCell" customModule="Messenger" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6D0-d4-SMN" id="YPZ-eg-hXQ">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqa-nQ-GTT">
-                                            <rect key="frame" x="20" y="12" width="374" height="66"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Label Label Label Label Label Label Label Label Label Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWj-XT-VYP">
+                                            <rect key="frame" x="20" y="35" width="312" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzL-Oj-r7T" userLabel="Timestamp Label">
+                                            <rect key="frame" x="352" y="35" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="sqa-nQ-GTT" firstAttribute="leading" secondItem="YPZ-eg-hXQ" secondAttribute="leading" constant="20" id="2FD-F8-Pte"/>
-                                        <constraint firstAttribute="bottom" secondItem="sqa-nQ-GTT" secondAttribute="bottom" constant="12" id="Mfn-Jh-HTB"/>
-                                        <constraint firstItem="sqa-nQ-GTT" firstAttribute="top" secondItem="YPZ-eg-hXQ" secondAttribute="top" constant="12" id="iFi-Zv-k97"/>
-                                        <constraint firstAttribute="trailing" secondItem="sqa-nQ-GTT" secondAttribute="trailing" constant="20" id="rwv-de-fn0"/>
+                                        <constraint firstAttribute="trailing" secondItem="rzL-Oj-r7T" secondAttribute="trailing" constant="20" id="6de-fU-qcG"/>
+                                        <constraint firstItem="pWj-XT-VYP" firstAttribute="leading" secondItem="YPZ-eg-hXQ" secondAttribute="leading" constant="20" id="K0y-Ji-gum"/>
+                                        <constraint firstItem="pWj-XT-VYP" firstAttribute="centerY" secondItem="YPZ-eg-hXQ" secondAttribute="centerY" id="NUF-ub-q9o"/>
+                                        <constraint firstItem="rzL-Oj-r7T" firstAttribute="leading" secondItem="pWj-XT-VYP" secondAttribute="trailing" constant="20" id="RT2-Nv-hb8"/>
+                                        <constraint firstItem="rzL-Oj-r7T" firstAttribute="centerY" secondItem="YPZ-eg-hXQ" secondAttribute="centerY" id="u9B-Ni-NFW"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="messageLabel" destination="sqa-nQ-GTT" id="UmQ-yf-b5R"/>
+                                    <outlet property="messageLabel" destination="pWj-XT-VYP" id="tBP-OZ-1wv"/>
+                                    <outlet property="timestampLabel" destination="rzL-Oj-r7T" id="SFg-sn-QbO"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -46,11 +54,11 @@
                             <outlet property="delegate" destination="Oer-0b-9KN" id="XvE-mO-RyZ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="urY-ph-E5W"/>
+                    <navigationItem key="navigationItem" title="Messages" id="urY-ph-E5W"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tix-Fk-Vny" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1434.7826086956522" y="247.76785714285714"/>
+            <point key="canvasLocation" x="1185.5072463768117" y="61.607142857142854"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VoE-wy-7qg">
