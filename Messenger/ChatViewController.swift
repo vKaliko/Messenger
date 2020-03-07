@@ -21,9 +21,9 @@ class ChatViewController: UITableViewController {
         super.viewDidLoad()
         FirebaseApp.configure()
         let db = Firestore.firestore()
-        db.collection("message").order(by: "time").getDocuments() { (querySnapshot, err) in
+        db.collection("message").order(by: "time").addSnapshotListener { (querySnapshot, err) in
             if let err = err {
-                print("Error getting documents: \(err)")
+                print("Error fetching: \(err)")
             } else {
                 var dicts = [[String: Any]]()
                 for document in querySnapshot!.documents {
@@ -59,8 +59,11 @@ class ChatViewController: UITableViewController {
         
         cell.messageLabel.text = d["text"] as! String
         let timestamp = d["time"] as! Timestamp
-        cell.timestampLabel.text = "\(timestamp.dateValue())"
-         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let convertedDate = dateFormatter.string(from: timestamp.dateValue())
+        cell.timestampLabel.text = convertedDate
+        
         return cell
     }
    
