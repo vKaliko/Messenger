@@ -14,30 +14,11 @@ import FirebaseFirestore
 
 class ChatViewController: UITableViewController {
     
-    var messages = [[String: Any]]()
-        
+    var chat: Chat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseApp.configure()
-        let db = Firestore.firestore()
-        db.collection("message").order(by: "time").addSnapshotListener { (querySnapshot, err) in
-            if let err = err {
-                print("Error fetching: \(err)")
-            } else {
-                var dicts = [[String: Any]]()
-                for document in querySnapshot!.documents {
-                    let d = document.data()
-                    dicts.append(d)
-                }
-                self.messages = dicts
-                self.tableView.reloadData()
-            }
-            
-
-        }
-   
-        
+        title = chat.title
     }
 
     // MARK: - Table view data source
@@ -48,21 +29,20 @@ class ChatViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return messages.count
+        return chat.messages.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let d = messages[indexPath.row]
+        let message = chat.messages[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
         
-        cell.messageLabel.text = d["text"] as? String
-        let timestamp = d["time"] as! Timestamp
+        cell.messageLabel.text = message.text
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
-        let convertedDate = dateFormatter.string(from: timestamp.dateValue())
+        let convertedDate = dateFormatter.string(from: message.time)
         cell.timestampLabel.text = convertedDate
+        
         
         return cell
     }

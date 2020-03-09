@@ -23,6 +23,9 @@ class Chat {
             let message = Message(dict: d)
             self.messages.append(message)
         }
+        self.messages.sort { (m1, m2) -> Bool in
+            return m1.time < m2.time
+        }
     }
     
     init(_ title: String) {

@@ -101,6 +101,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Oer-0b-9KN" kind="show" id="OlI-Rg-SfO"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
