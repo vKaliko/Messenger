@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/vanyakaliko/Documents/Projects/Messenger/Messenger/MessageCell.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/vanyakaliko/Documents/Projects/Messenger/Messenger/ChatCellViewController.swift">
-   </FileRef>
-   <FileRef
       location = "group:Messenger.xcodeproj">
    </FileRef>
    <FileRef

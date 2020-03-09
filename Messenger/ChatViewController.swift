@@ -57,7 +57,7 @@ class ChatViewController: UITableViewController {
         let d = messages[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
         
-        cell.messageLabel.text = d["text"] as! String
+        cell.messageLabel.text = d["text"] as? String
         let timestamp = d["time"] as! Timestamp
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
@@ -80,3 +80,4 @@ class ChatViewController: UITableViewController {
     */
 
 }
+

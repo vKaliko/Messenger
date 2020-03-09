@@ -16,7 +16,9 @@
 		105F88D3240D7D73005AA9F4 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 105F88D2240D7D73005AA9F4 /* Podfile */; };
 		105F88D5240EAFCE005AA9F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 105F88D4240EAFCE005AA9F4 /* GoogleService-Info.plist */; };
 		1090761B2411632A0016CB98 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1090761A2411632A0016CB98 /* ChatViewController.swift */; };
-		1090762124116CD40016CB98 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1090762024116CD40016CB98 /* MessageCell.swift */; };
+		DBAF4FB92415508B00CF7562 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAF4FB82415508B00CF7562 /* MessageCell.swift */; };
+		DBAF4FBB24155F8A00CF7562 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAF4FBA24155F8A00CF7562 /* ListViewController.swift */; };
+		DBAF4FBD241560D800CF7562 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAF4FBC241560D800CF7562 /* Chat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,9 +33,11 @@
 		105F88D2240D7D73005AA9F4 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		105F88D4240EAFCE005AA9F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1090761A2411632A0016CB98 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		1090762024116CD40016CB98 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MessageCell.swift; path = /Users/vanyakaliko/Documents/Projects/Messenger/Messenger/MessageCell.swift; sourceTree = "<absolute>"; };
 		5DF59499E264D54FE41ED6DA /* Pods-Messenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.release.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.release.xcconfig"; sourceTree = "<group>"; };
 		849744ED1BC5BF6492EEDDDC /* Pods-Messenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.debug.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.debug.xcconfig"; sourceTree = "<group>"; };
+		DBAF4FB82415508B00CF7562 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		DBAF4FBA24155F8A00CF7562 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		DBAF4FBC241560D800CF7562 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +84,10 @@
 				105F88D2240D7D73005AA9F4 /* Podfile */,
 				105F88BC240D7C86005AA9F4 /* AppDelegate.swift */,
 				105F88BE240D7C86005AA9F4 /* SceneDelegate.swift */,
+				DBAF4FBA24155F8A00CF7562 /* ListViewController.swift */,
+				DBAF4FBC241560D800CF7562 /* Chat.swift */,
 				1090761A2411632A0016CB98 /* ChatViewController.swift */,
-				1090762024116CD40016CB98 /* MessageCell.swift */,
+				DBAF4FB82415508B00CF7562 /* MessageCell.swift */,
 				105F88C4240D7C86005AA9F4 /* Main.storyboard */,
 				105F88C7240D7C89005AA9F4 /* Assets.xcassets */,
 				105F88C9240D7C89005AA9F4 /* LaunchScreen.storyboard */,
@@ -218,8 +224,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				105F88BD240D7C86005AA9F4 /* AppDelegate.swift in Sources */,
-				1090762124116CD40016CB98 /* MessageCell.swift in Sources */,
+				DBAF4FBD241560D800CF7562 /* Chat.swift in Sources */,
+				DBAF4FB92415508B00CF7562 /* MessageCell.swift in Sources */,
 				1090761B2411632A0016CB98 /* ChatViewController.swift in Sources */,
+				DBAF4FBB24155F8A00CF7562 /* ListViewController.swift in Sources */,
 				105F88BF240D7C86005AA9F4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
