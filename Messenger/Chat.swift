@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
-class Chat {
+class Chat: Codable {
     
     var title: String
     var messages: [Message]
@@ -34,7 +34,7 @@ class Chat {
     }
 }
 
-class Message {
+class Message: Codable {
     
     var text: String
     var time: Date

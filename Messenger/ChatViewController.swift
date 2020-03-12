@@ -10,9 +10,15 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
+let vanyaUid = "tsvWKoYUUDgudsFqWiTTMiTQyWz1"
+let iliaUid = "a3L61PzTZoVMZSlS9BxSNnUuV8g1"
 
-
-class ChatViewController: UITableViewController {
+class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var sendButton: UIButton!
+    
     
     var chat: Chat!
     
@@ -23,17 +29,17 @@ class ChatViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chat.messages.count
     }
     
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = chat.messages[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
         
@@ -47,7 +53,19 @@ class ChatViewController: UITableViewController {
         return cell
     }
    
-
+    @IBAction func send() {
+        guard let text = textField.text else {
+            return
+        }
+        
+        let message = Message(text: text, time: Date(), uid: vanyaUid)
+        chat.messages.append(message)
+        let db = Firestore.firestore()
+        db.collection("chats")
+        
+        tableView.reloadData()
+        
+    }
     
     /*
     // MARK: - Navigation
