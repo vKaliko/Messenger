@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 import Firebase
 import FirebaseFirestore
 import FirebaseUI
@@ -14,12 +15,8 @@ import FirebaseUI
 class ListViewController: UITableViewController, FUIAuthDelegate {
     
     var chats = [Chat]()
-    
-    let providers: [FUIAuthProvider] = [
-        //FUITwitterAuth(),
-        //FUIPhoneAuth(authUI:FUIAuth?.defaultAuthUI())
-    ]
-    
+    var user: User?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseApp.configure()
@@ -27,7 +24,11 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
             return
         }
         authUI.delegate = self
-        //authUI.providers = providers
+//        let providers: [FUIAuthProvider] = [ FUIGoogleAuth ]
+//            //FUIEmailAuth
+//            //FUIPhoneAuth(authUI:authUI)
+//        //]
+        authUI.providers = [FUIEmailAuth()]
         let authViewController = authUI.authViewController()
         present(authViewController, animated: true, completion: nil)
         let db = Firestore.firestore()
@@ -74,7 +75,8 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
     }
     
     func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, url: URL?, error: Error?) {
-        
+        user = authDataResult?.user
+        print(user?.uid, user?.email)
     }
     
 
