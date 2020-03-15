@@ -9,14 +9,27 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import FirebaseUI
 
-class ListViewController: UITableViewController {
+class ListViewController: UITableViewController, FUIAuthDelegate {
     
     var chats = [Chat]()
-
+    
+    let providers: [FUIAuthProvider] = [
+        //FUITwitterAuth(),
+        //FUIPhoneAuth(authUI:FUIAuth?.defaultAuthUI())
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseApp.configure()
+        guard let authUI = FUIAuth.defaultAuthUI() else {
+            return
+        }
+        authUI.delegate = self
+        //authUI.providers = providers
+        let authViewController = authUI.authViewController()
+        present(authViewController, animated: true, completion: nil)
         let db = Firestore.firestore()
         db.collection("chats").order(by: "title").addSnapshotListener { (querySnapshot, err) in
             if let err = err {
@@ -34,6 +47,8 @@ class ListViewController: UITableViewController {
             
 
         }
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -42,7 +57,8 @@ class ListViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
+    
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -55,6 +71,10 @@ class ListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell", for: indexPath)
         cell.textLabel?.text = chats[indexPath.row].title
         return cell
+    }
+    
+    func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, url: URL?, error: Error?) {
+        
     }
     
 
