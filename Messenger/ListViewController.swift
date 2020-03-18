@@ -126,7 +126,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
             return
         }
         chatVC.chat = chats[row]
-        
+        chatVC.user = user
         
     }
     

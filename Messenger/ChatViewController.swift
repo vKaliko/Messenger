@@ -21,6 +21,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     var chat: Chat!
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,10 +59,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             return
         }
         
-        let message = Message(text: text, time: Date(), uid: vanyaUid)
+        let message = Message(text: text, time: Date(), uid: user.uid)
         chat.messages.append(message)
         let db = Firestore.firestore()
         db.collection("chats")
+        
+        
+        
         
         tableView.reloadData()
         
