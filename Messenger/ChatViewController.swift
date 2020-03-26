@@ -10,9 +10,6 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
-let vanyaUid = "tsvWKoYUUDgudsFqWiTTMiTQyWz1"
-let iliaUid = "a3L61PzTZoVMZSlS9BxSNnUuV8g1"
-
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
@@ -27,7 +24,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         title = chat.title
     }
-
     // MARK: - Table view data source
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -49,7 +45,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         dateFormatter.dateFormat = "HH:mm"
         let convertedDate = dateFormatter.string(from: message.time)
         cell.timestampLabel.text = convertedDate
-        
+        cell.usernameLabel.text = message.uid
         
         return cell
     }
@@ -62,7 +58,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let message = Message(text: text, time: Date(), uid: user.uid)
         chat.messages.append(message)
         let db = Firestore.firestore()
-        db.collection("chats")
+        db.collection("chats").document(chat.id).setData(chat.toDict())
         
         
         

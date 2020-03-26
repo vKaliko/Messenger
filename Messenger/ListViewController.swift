@@ -24,13 +24,17 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
             return
         }
         authUI.delegate = self
-//        let providers: [FUIAuthProvider] = [ FUIGoogleAuth ]
-//            //FUIEmailAuth
-//            //FUIPhoneAuth(authUI:authUI)
-//        //]
         authUI.providers = [FUIEmailAuth()]
         let authViewController = authUI.authViewController()
-        present(authViewController, animated: true, completion: nil)
+        let handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+            print("Login change listener user = \(user)")
+            if auth.currentUser != nil {
+                self.user = auth.currentUser
+            }
+            else {
+                self.present(authViewController, animated: true, completion: nil)
+            }
+        }
         let db = Firestore.firestore()
         db.collection("chats").order(by: "title").addSnapshotListener { (querySnapshot, err) in
             if let err = err {
@@ -39,7 +43,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                 var newChats = [Chat]()
                 for document in querySnapshot!.documents {
                     let d = document.data()
-                    let chat = Chat(dict: d)
+                    let chat = Chat(dict: d, id: document.documentID)
                     newChats.append(chat)
                 }
                 self.chats = newChats
@@ -77,6 +81,13 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
     func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, url: URL?, error: Error?) {
         user = authDataResult?.user
         print(user?.uid, user?.email)
+    }
+    
+    @IBAction func logOut() {
+        guard let authUI = FUIAuth.defaultAuthUI() else {
+            return
+        }
+        try! authUI.signOut()
     }
     
 
@@ -127,6 +138,37 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
         }
         chatVC.chat = chats[row]
         chatVC.user = user
+        
+    }
+    @IBAction func addChat(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "New Chat", message: nil, preferredStyle: .alert)
+        
+        alert.addTextField()
+        let submitAction = UIAlertAction(title: "Add", style: .default) { [unowned alert] _ in
+            let title = alert.textFields![0].text
+            let chat = Chat(title!, id: "")
+            let db = Firestore.firestore()
+            var ref: DocumentReference? = nil
+            ref = db.collection("chats").addDocument(data: chat.toDict()) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                }
+                else {
+                    chat.id = ref!.documentID
+                }
+            }
+
+            // do something interesting with "answer" here
+        }
+        alert.addAction(submitAction)
+
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Default action"), style: .default, handler: { _ in
+        NSLog("The \"OK\" alert occured.")
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+        
         
     }
     

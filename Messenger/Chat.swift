@@ -12,10 +12,12 @@ import FirebaseFirestore
 
 class Chat: Codable {
     
+    var id: String
     var title: String
     var messages: [Message]
     
-    init(dict: [String : Any]) {
+    init(dict: [String : Any], id: String) {
+        self.id = id
         self.title = dict["title"] as! String
         let dicts = dict["messages"] as! [[String : Any]]
         self.messages = [Message]()
@@ -28,10 +30,24 @@ class Chat: Codable {
         }
     }
     
-    init(_ title: String) {
+    init(_ title: String, id: String) {
         self.title = title
+        self.id = id
         self.messages = [Message]()
+        
     }
+    
+    func toDict() -> [String : Any] {
+        var dicts = [[String : Any]]()
+        for message in self.messages {
+            dicts.append(message.toDict())
+        }
+        let dict = ["title" : self.title, "messages" : dicts] as [String : Any]
+        return dict
+    }
+    
+    
+    
 }
 
 class Message: Codable {
@@ -52,5 +68,13 @@ class Message: Codable {
         self.time = time
         self.uid = uid
     }
+    
+    func toDict() -> [String : Any] {
+        let timestamp = Timestamp(date: self.time)
+        let dict = ["text" : self.text, "time" : timestamp, "uid" : self.uid] as [String : Any]
+        return dict
+    }
+    
+    
     
 }
