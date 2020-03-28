@@ -16,10 +16,13 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
     
     var chats = [Chat]()
     var user: User?
-
+    var db: Firestore!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem = editButtonItem
         FirebaseApp.configure()
+        db = Firestore.firestore()
         guard let authUI = FUIAuth.defaultAuthUI() else {
             return
         }
@@ -35,7 +38,6 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                 self.present(authViewController, animated: true, completion: nil)
             }
         }
-        let db = Firestore.firestore()
         db.collection("chats").order(by: "title").addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Error fetching: \(err)")
@@ -145,11 +147,13 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
         
         alert.addTextField()
         let submitAction = UIAlertAction(title: "Add", style: .default) { [unowned alert] _ in
-            let title = alert.textFields![0].text
-            let chat = Chat(title!, id: "")
-            let db = Firestore.firestore()
+            guard let title = alert.textFields![0].text, title.count > 0 else {
+                return
+            }
+            
+            let chat = Chat(title, id: "")
             var ref: DocumentReference? = nil
-            ref = db.collection("chats").addDocument(data: chat.toDict()) { err in
+            ref = self.db.collection("chats").addDocument(data: chat.toDict()) { err in
                 if let err = err {
                     print("Error adding document: \(err)")
                 }
@@ -170,6 +174,19 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
         
         
         
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let chatId = chats[indexPath.row].id
+            db.collection("chats").document(chatId).delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
+                }
+            }
+        }
     }
     
 

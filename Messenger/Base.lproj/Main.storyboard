@@ -128,10 +128,10 @@
             </objects>
             <point key="canvasLocation" x="-275" y="80"/>
         </scene>
-        <!--List View Controller-->
+        <!--Chats-->
         <scene sceneID="iyP-f3-MLo">
             <objects>
-                <tableViewController id="uAi-So-SH0" customClass="ListViewController" customModule="Messenger" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Chats" id="uAi-So-SH0" customClass="ListViewController" customModule="Messenger" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="h8a-7k-uXg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -163,18 +163,21 @@
                             <outlet property="delegate" destination="uAi-So-SH0" id="6HK-ZP-d3p"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Gfx-3B-mIP">
-                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="pd0-iG-4cE">
-                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="logOut" destination="uAi-So-SH0" id="YiI-nc-40c"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dXz-9c-B82">
-                            <connections>
-                                <action selector="addChat:" destination="uAi-So-SH0" id="X6z-8B-028"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="Chats" id="Gfx-3B-mIP">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="cZ2-Dp-441"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="dXz-9c-B82">
+                                <connections>
+                                    <action selector="addChat:" destination="uAi-So-SH0" id="X6z-8B-028"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Log Out" id="pd0-iG-4cE">
+                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="logOut" destination="uAi-So-SH0" id="YiI-nc-40c"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4sC-TG-DKq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
