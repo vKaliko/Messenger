@@ -34,7 +34,6 @@ class Chat: Codable {
         self.title = title
         self.id = id
         self.messages = [Message]()
-        
     }
     
     func toDict() -> [String : Any] {
@@ -74,7 +73,15 @@ class Message: Codable {
         let dict = ["text" : self.text, "time" : timestamp, "uid" : self.uid] as [String : Any]
         return dict
     }
+}
+
+class MyUser: Codable {
+    var id: String
+    var name: String
     
-    
+    init(dict: [String : Any], id: String) {
+        self.name = dict["name"] as! String
+        self.id = id
+    }
     
 }

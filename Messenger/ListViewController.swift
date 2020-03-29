@@ -17,6 +17,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
     var chats = [Chat]()
     var user: User?
     var db: Firestore!
+    var users: [MyUser]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,20 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                 self.present(authViewController, animated: true, completion: nil)
             }
         }
+        db.collection("users").addSnapshotListener { (querySnapshot, err) in
+            if let err = err {
+                print("Error fetching: \(err)")
+            }
+            else {
+                var newUsers = [MyUser]()
+                for document in querySnapshot!.documents {
+                    let d = document.data()
+                    let u = MyUser(dict: d, id: document.documentID)
+                    newUsers.append(u)
+                }
+                self.users = newUsers
+            }
+        }
         db.collection("chats").order(by: "title").addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Error fetching: \(err)")
@@ -51,8 +66,6 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                 self.chats = newChats
                 self.tableView.reloadData()
             }
-            
-
         }
         
         
@@ -140,6 +153,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
         }
         chatVC.chat = chats[row]
         chatVC.user = user
+        chatVC.users = users
         
     }
     @IBAction func addChat(_ sender: UIBarButtonItem) {

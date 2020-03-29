@@ -19,10 +19,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var chat: Chat!
     var user: User!
+    var users: [MyUser]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = chat.title
+        
     }
     // MARK: - Table view data source
 
@@ -45,7 +47,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         dateFormatter.dateFormat = "HH:mm"
         let convertedDate = dateFormatter.string(from: message.time)
         cell.timestampLabel.text = convertedDate
-        cell.usernameLabel.text = message.uid
+        for user in users {
+            if user.id == message.uid {
+                cell.usernameLabel.text = user.name
+                break
+            }
+        }
         
         return cell
     }
