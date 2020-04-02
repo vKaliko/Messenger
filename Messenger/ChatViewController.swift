@@ -19,7 +19,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var chat: Chat!
     var user: User!
-    var users: [MyUser]!
+    var users: [Profile]!
     
     override func viewDidLoad() {
         super.viewDidLoad()

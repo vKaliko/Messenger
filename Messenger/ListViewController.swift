@@ -17,7 +17,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
     var chats = [Chat]()
     var user: User?
     var db: Firestore!
-    var users: [MyUser]!
+    var users: [Profile]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
         authUI.delegate = self
         authUI.providers = [FUIEmailAuth()]
         let authViewController = authUI.authViewController()
-        let handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+        Auth.auth().addStateDidChangeListener { (auth, user) in
             print("Login change listener user = \(user)")
             if auth.currentUser != nil {
                 self.user = auth.currentUser
@@ -39,15 +39,15 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                 self.present(authViewController, animated: true, completion: nil)
             }
         }
-        db.collection("users").addSnapshotListener { (querySnapshot, err) in
+        db.collection("profiles").addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Error fetching: \(err)")
             }
             else {
-                var newUsers = [MyUser]()
+                var newUsers = [Profile]()
                 for document in querySnapshot!.documents {
                     let d = document.data()
-                    let u = MyUser(dict: d, id: document.documentID)
+                    let u = Profile(dict: d, id: document.documentID)
                     newUsers.append(u)
                 }
                 self.users = newUsers

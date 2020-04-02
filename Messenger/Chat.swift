@@ -75,7 +75,7 @@ class Message: Codable {
     }
 }
 
-class MyUser: Codable {
+class Profile: Codable {
     var id: String
     var name: String
     
