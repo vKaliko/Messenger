@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lj1-eu-nvL">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
@@ -15,16 +15,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0kb-fU-uBm">
-                                <rect key="frame" x="20" y="826" width="374" height="50"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0kb-fU-uBm">
+                                <rect key="frame" x="20" y="763" width="374" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a2a-1Y-Rth">
-                                        <rect key="frame" x="0.0" y="0.0" width="318" height="50"/>
+                                        <rect key="frame" x="0.0" y="10" width="318" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="GwO-Wq-yL3"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqz-S8-0Zv">
-                                        <rect key="frame" x="338" y="0.0" width="36" height="50"/>
+                                        <rect key="frame" x="338" y="10" width="36" height="30"/>
                                         <state key="normal" title="Send"/>
                                         <connections>
                                             <action selector="send" destination="abT-Pw-qHS" eventType="touchUpInside" id="gkh-FW-66t"/>
@@ -36,7 +39,7 @@
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wOV-Pl-MhG">
-                                <rect key="frame" x="0.0" y="88" width="414" height="730"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="675"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="44" id="6D0-d4-SMN" customClass="MessageCell" customModule="Messenger" customModuleProvider="target">
@@ -96,8 +99,8 @@
                             <constraint firstItem="0kb-fU-uBm" firstAttribute="leading" secondItem="i4i-yh-5OB" secondAttribute="leading" constant="20" id="Iez-ib-Xgc"/>
                             <constraint firstItem="wOV-Pl-MhG" firstAttribute="leading" secondItem="i4i-yh-5OB" secondAttribute="leading" id="gwD-B9-z9C"/>
                             <constraint firstItem="i4i-yh-5OB" firstAttribute="trailing" secondItem="wOV-Pl-MhG" secondAttribute="trailing" id="h8b-ME-Zju"/>
-                            <constraint firstAttribute="bottom" secondItem="0kb-fU-uBm" secondAttribute="bottom" constant="20" symbolic="YES" id="lj8-BH-big"/>
-                            <constraint firstItem="0kb-fU-uBm" firstAttribute="top" secondItem="wOV-Pl-MhG" secondAttribute="bottom" constant="8" symbolic="YES" id="qjv-BE-WQY"/>
+                            <constraint firstItem="i4i-yh-5OB" firstAttribute="bottom" secondItem="0kb-fU-uBm" secondAttribute="bottom" id="lj8-BH-big"/>
+                            <constraint firstItem="0kb-fU-uBm" firstAttribute="top" secondItem="wOV-Pl-MhG" secondAttribute="bottom" id="qjv-BE-WQY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="i4i-yh-5OB"/>
                     </view>
@@ -130,10 +133,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Vanya Kaliko" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BZt-dp-404" userLabel="nameTextField">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BZt-dp-404" userLabel="nameTextField">
                                                     <rect key="frame" x="20" y="2" width="374" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textDidChange:" destination="0a6-ft-N9p" eventType="editingChanged" id="dtv-IW-9ra"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -153,6 +159,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Profile" id="86i-ED-Dkz">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="pd0-iG-4cE">
+                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="logOut" destination="0a6-ft-N9p" id="oZ3-Zc-VqK"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="xmF-3Y-QnL">
                             <connections>
                                 <action selector="done" destination="0a6-ft-N9p" id="xPd-Tj-6Sg"/>
@@ -160,18 +172,19 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneButton" destination="xmF-3Y-QnL" id="UZ6-Ed-Ydk"/>
                         <outlet property="textField" destination="BZt-dp-404" id="WRO-Fj-KJh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dpf-EL-46Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="719" y="816"/>
+            <point key="canvasLocation" x="528" y="816"/>
         </scene>
-        <!--Item-->
+        <!--Profile-->
         <scene sceneID="6mh-FX-fcg">
             <objects>
                 <navigationController id="k57-ev-mSI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="OkQ-Mp-9YD"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" selectedImage="person.fill" id="OkQ-Mp-9YD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dE8-vm-bxa">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -200,13 +213,13 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V1F-jS-2hR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1377" y="80"/>
+            <point key="canvasLocation" x="-1078" y="80"/>
         </scene>
-        <!--Item-->
+        <!--Chats-->
         <scene sceneID="VoE-wy-7qg">
             <objects>
                 <navigationController id="LBQ-Gn-ZL2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="9Rx-NZ-Jx8"/>
+                    <tabBarItem key="tabBarItem" title="Chats" image="message" catalog="system" selectedImage="message.fill" id="9Rx-NZ-Jx8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4w4-Wu-ouW">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -227,15 +240,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <tabBar key="tableFooterView" contentMode="scaleToFill" id="n4f-sR-V6F">
-                            <rect key="frame" x="0.0" y="99.666667938232422" width="414" height="49"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <items>
-                                <tabBarItem title="Chats" image="message" catalog="system" id="hNs-6j-mHx"/>
-                                <tabBarItem title="Profile" image="person.circle" catalog="system" id="k03-Mv-VME"/>
-                            </items>
-                        </tabBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChatCell" textLabel="v7T-0a-JmQ" style="IBUITableViewCellStyleDefault" id="pb8-Z1-2cR">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
@@ -266,19 +270,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Chats" id="Gfx-3B-mIP">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="cZ2-Dp-441"/>
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="dXz-9c-B82">
-                                <connections>
-                                    <action selector="addChat:" destination="uAi-So-SH0" id="X6z-8B-028"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Log Out" id="pd0-iG-4cE">
-                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="logOut" destination="uAi-So-SH0" id="YiI-nc-40c"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dXz-9c-B82">
+                            <connections>
+                                <action selector="addChat:" destination="uAi-So-SH0" id="X6z-8B-028"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4sC-TG-DKq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -288,6 +284,8 @@
     </scenes>
     <resources>
         <image name="message" catalog="system" width="128" height="113"/>
-        <image name="person.circle" catalog="system" width="128" height="121"/>
+        <image name="message.fill" catalog="system" width="128" height="113"/>
+        <image name="person" catalog="system" width="128" height="117"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
     </resources>
 </document>

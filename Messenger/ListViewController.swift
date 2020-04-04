@@ -15,28 +15,22 @@ import FirebaseUI
 class ListViewController: UITableViewController, FUIAuthDelegate {
     
     var chats = [Chat]()
-    var user: User?
     var db: Firestore!
-    var users: [Profile]!
+    var profiles: [Profile]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
-        FirebaseApp.configure()
         db = Firestore.firestore()
         guard let authUI = FUIAuth.defaultAuthUI() else {
             return
         }
         authUI.delegate = self
         authUI.providers = [FUIEmailAuth()]
-        let authViewController = authUI.authViewController()
         Auth.auth().addStateDidChangeListener { (auth, user) in
-            print("Login change listener user = \(user)")
-            if auth.currentUser != nil {
-                self.user = auth.currentUser
-            }
-            else {
-                self.present(authViewController, animated: true, completion: nil)
+            print("listvc. Login change listener user = \(user)")
+            if auth.currentUser == nil {
+                self.present(authUI.authViewController(), animated: true, completion: nil)
             }
         }
         db.collection("profiles").addSnapshotListener { (querySnapshot, err) in
@@ -44,13 +38,13 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                 print("Error fetching: \(err)")
             }
             else {
-                var newUsers = [Profile]()
+                var newProfiles = [Profile]()
                 for document in querySnapshot!.documents {
                     let d = document.data()
-                    let u = Profile(dict: d, id: document.documentID)
-                    newUsers.append(u)
+                    let p = Profile(dict: d, id: document.documentID)
+                    newProfiles.append(p)
                 }
-                self.users = newUsers
+                self.profiles = newProfiles
             }
         }
         db.collection("chats").order(by: "title").addSnapshotListener { (querySnapshot, err) in
@@ -93,21 +87,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
         return cell
     }
     
-    func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, url: URL?, error: Error?) {
-        user = authDataResult?.user
-        print(user?.uid, user?.email)
-    }
-    
-    @IBAction func logOut() {
-        guard let authUI = FUIAuth.defaultAuthUI() else {
-            return
-        }
-        try! authUI.signOut()
-    }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
+    /*   // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
@@ -152,8 +132,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
             return
         }
         chatVC.chat = chats[row]
-        chatVC.user = user
-        chatVC.users = users
+        chatVC.profiles = profiles
         
     }
     @IBAction func addChat(_ sender: UIBarButtonItem) {

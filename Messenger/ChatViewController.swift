@@ -18,8 +18,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     var chat: Chat!
-    var user: User!
-    var users: [Profile]!
+    var profiles: [Profile]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,9 +46,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         dateFormatter.dateFormat = "HH:mm"
         let convertedDate = dateFormatter.string(from: message.time)
         cell.timestampLabel.text = convertedDate
-        for user in users {
-            if user.id == message.uid {
-                cell.usernameLabel.text = user.name
+        for profile in profiles {
+            if profile.id == message.uid {
+                cell.usernameLabel.text = profile.name
                 break
             }
         }
@@ -61,17 +60,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         guard let text = textField.text else {
             return
         }
-        
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
         let message = Message(text: text, time: Date(), uid: user.uid)
         chat.messages.append(message)
         let db = Firestore.firestore()
         db.collection("chats").document(chat.id).setData(chat.toDict())
-        
-        
-        
-        
         tableView.reloadData()
-        
     }
     
     /*
