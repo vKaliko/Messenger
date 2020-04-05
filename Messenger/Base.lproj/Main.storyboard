@@ -49,34 +49,42 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Good morning!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWj-XT-VYP">
-                                                    <rect key="frame" x="20" y="18" width="313.33333333333331" height="23"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzL-Oj-r7T" userLabel="Timestamp Label">
-                                                    <rect key="frame" x="353.33333333333331" y="21.666666666666671" width="40.666666666666686" height="19.333333333333329"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vanya Kaliko" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPY-fe-hsZ" userLabel="UsernameLabel">
-                                                    <rect key="frame" x="20" y="3.666666666666667" width="74.333333333333329" height="14.333333333333332"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="7" id="6wh-hW-PIC">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Gbg-UT-xaV">
+                                                            <rect key="frame" x="0.0" y="0.0" width="127.33333333333333" height="44"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Vanya Kaliko" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPY-fe-hsZ" userLabel="UsernameLabel">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="127.33333333333333" height="18"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" ambiguous="YES" text="Good morning!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWj-XT-VYP">
+                                                                    <rect key="frame" x="0.0" y="21" width="127.33333333333333" height="23"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="pWj-XT-VYP" firstAttribute="top" secondItem="TPY-fe-hsZ" secondAttribute="bottom" constant="2" id="XBv-cf-HMi"/>
+                                                            </constraints>
+                                                        </stackView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzL-Oj-r7T" userLabel="Timestamp Label">
+                                                            <rect key="frame" x="134.33333333333334" y="0.0" width="279.66666666666663" height="44"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Gbg-UT-xaV" firstAttribute="leading" secondItem="6wh-hW-PIC" secondAttribute="leading" constant="5" id="UJn-1U-rqv"/>
+                                                    </constraints>
+                                                </stackView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="rzL-Oj-r7T" secondAttribute="trailing" constant="20" id="6de-fU-qcG"/>
-                                                <constraint firstItem="pWj-XT-VYP" firstAttribute="leading" secondItem="YPZ-eg-hXQ" secondAttribute="leading" constant="20" id="K0y-Ji-gum"/>
-                                                <constraint firstItem="pWj-XT-VYP" firstAttribute="leading" secondItem="TPY-fe-hsZ" secondAttribute="leading" id="KNP-9E-9g3"/>
-                                                <constraint firstItem="rzL-Oj-r7T" firstAttribute="bottom" secondItem="pWj-XT-VYP" secondAttribute="bottom" id="MMP-RY-Mu5"/>
-                                                <constraint firstItem="rzL-Oj-r7T" firstAttribute="leading" secondItem="pWj-XT-VYP" secondAttribute="trailing" constant="20" id="RT2-Nv-hb8"/>
-                                                <constraint firstAttribute="bottom" secondItem="pWj-XT-VYP" secondAttribute="bottom" constant="3" id="Z04-rG-tIm"/>
-                                                <constraint firstItem="pWj-XT-VYP" firstAttribute="top" secondItem="TPY-fe-hsZ" secondAttribute="bottom" id="tAe-sr-O14"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="messageLabel" destination="pWj-XT-VYP" id="tBP-OZ-1wv"/>
