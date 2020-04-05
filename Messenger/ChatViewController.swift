@@ -45,13 +45,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         let convertedDate = dateFormatter.string(from: message.time)
-        cell.timestampLabel.text = convertedDate
         for profile in profiles {
             if profile.id == message.uid {
-                cell.usernameLabel.text = profile.name
+                cell.usernameLabel.text = profile.name + " - " + convertedDate
                 break
             }
         }
+        
         
         return cell
     }
