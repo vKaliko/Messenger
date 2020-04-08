@@ -39,20 +39,18 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = chat.messages[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
-        
+        let reuseId = Auth.auth().currentUser?.uid == message.uid ? "MessageCell" : "ImageMessageCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath) as! MessageCell
         cell.messageLabel.text = message.text
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         let convertedDate = dateFormatter.string(from: message.time)
         for profile in profiles {
             if profile.id == message.uid {
-                cell.usernameLabel.text = profile.name + " - " + convertedDate
-                break
+               cell.usernameLabel.text = profile.name + " - " + convertedDate
+               break
             }
         }
-        
-        
         return cell
     }
    

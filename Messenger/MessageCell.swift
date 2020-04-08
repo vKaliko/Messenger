@@ -19,3 +19,16 @@ class MessageCell: UITableViewCell {
     }
 }
 
+
+class ImageMessageCell: MessageCell {
+    @IBOutlet weak var profileImageView: UIImageView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        profileImageView.layer.cornerRadius = bounds.size.width / 2
+        profileImageView.clipsToBounds = true
+    }
+}
+
+
+
