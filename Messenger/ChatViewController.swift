@@ -13,9 +13,9 @@ import FirebaseFirestore
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var sendButton: UIButton!
-    
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var chat: Chat!
     var profiles: [Profile]!
@@ -23,7 +23,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         title = chat.title
-        
+        textView.layer.cornerRadius = 7
+        textView.clipsToBounds = true
+        textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.layer.borderWidth = 0.5
     }
     // MARK: - Table view data source
 
@@ -55,7 +58,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
    
     @IBAction func send() {
-        guard let text = textField.text else {
+        guard let text = textView.text else {
             return
         }
         guard let user = Auth.auth().currentUser else {
