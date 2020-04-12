@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
-class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var textView: UITextView!
@@ -22,12 +22,28 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        textView.delegate = self
         title = chat.title
         textView.layer.cornerRadius = 7
         textView.clipsToBounds = true
         textView.layer.borderColor = UIColor.lightGray.cgColor
         textView.layer.borderWidth = 0.5
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+        
+        //bottomConstraint.constant = 300
+        //view.layoutIfNeeded()
+    
     // MARK: - Table view data source
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -58,7 +74,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
    
     @IBAction func send() {
-        guard let text = textView.text else {
+        guard let text = textView.text, text.count > 0 else {
             return
         }
         guard let user = Auth.auth().currentUser else {
@@ -66,10 +82,41 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         let message = Message(text: text, time: Date(), uid: user.uid)
         chat.messages.append(message)
+        textView.text = ""
+        tableView.reloadData()
+        let indexPath = IndexPath(row: chat.messages.count-1, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         let db = Firestore.firestore()
         db.collection("chats").document(chat.id).setData(chat.toDict())
-        tableView.reloadData()
     }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        updateSendButton()
+    }
+        
+    func updateSendButton() {
+        sendButton.isEnabled = !textView.text.isEmpty
+    }
+    
+    @objc func keyboardWillChange(notification: Notification) {
+        print("Keyboard will show: \(notification.name.rawValue)")
+        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        if notification.name == UIResponder.keyboardWillShowNotification || notification.name.rawValue == UIResponder.keyboardFrameEndUserInfoKey {
+            bottomConstraint.constant = -keyboardRect.height
+            view.layoutIfNeeded()
+        }
+        else {
+            bottomConstraint.constant = 0
+            view.layoutIfNeeded()
+        }
+        
+    }
+    
+        
+
+
     
     /*
     // MARK: - Navigation
@@ -82,4 +129,5 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     */
 
 }
+
 

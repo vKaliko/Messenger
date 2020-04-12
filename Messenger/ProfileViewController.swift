@@ -45,9 +45,6 @@ class ProfileViewController: UITableViewController {
                 }
             }
         }
-        else {
-            
-        }
     }
     
     @IBAction func textDidChange(_ sender: UITextField) {
