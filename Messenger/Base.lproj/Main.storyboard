@@ -16,17 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0kb-fU-uBm" userLabel="sendStack">
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0kb-fU-uBm" userLabel="sendStack">
                                 <rect key="frame" x="20" y="763" width="374" height="50"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsVerticalScrollIndicator="NO" text="asfaja;fjkal;fjskf;ajdfkl;adfjkds;fjakfl;adjfk;afj" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="uzr-Gd-xWF">
-                                        <rect key="frame" x="0.0" y="0.33333333333337123" width="177" height="49.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="17" width="334.33333333333331" height="33"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqz-S8-0Zv">
-                                        <rect key="frame" x="197" y="14" width="177" height="22"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqz-S8-0Zv">
+                                        <rect key="frame" x="354.33333333333331" y="28" width="19.666666666666686" height="22"/>
                                         <state key="normal" image="arrow.up.circle.fill" catalog="system"/>
                                         <connections>
                                             <action selector="send" destination="abT-Pw-qHS" eventType="touchUpInside" id="gkh-FW-66t"/>
