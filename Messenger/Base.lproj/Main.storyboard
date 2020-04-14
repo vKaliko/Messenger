@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0kb-fU-uBm" userLabel="sendStack">
-                                <rect key="frame" x="20" y="763" width="374" height="50"/>
+                                <rect key="frame" x="20" y="846" width="374" height="50"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsVerticalScrollIndicator="NO" text="asfaja;fjkal;fjskf;ajdfkl;adfjkds;fjakfl;adjfk;afj" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="uzr-Gd-xWF">
                                         <rect key="frame" x="0.0" y="17" width="334.33333333333331" height="33"/>
@@ -39,7 +39,7 @@
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wOV-Pl-MhG">
-                                <rect key="frame" x="0.0" y="88" width="414" height="675"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="758"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MessageCell" id="TAh-o2-TIT" customClass="MessageCell" customModule="Messenger" customModuleProvider="target">
@@ -149,7 +149,7 @@
                             <constraint firstItem="0kb-fU-uBm" firstAttribute="leading" secondItem="i4i-yh-5OB" secondAttribute="leading" constant="20" id="Iez-ib-Xgc"/>
                             <constraint firstItem="wOV-Pl-MhG" firstAttribute="leading" secondItem="i4i-yh-5OB" secondAttribute="leading" id="gwD-B9-z9C"/>
                             <constraint firstItem="i4i-yh-5OB" firstAttribute="trailing" secondItem="wOV-Pl-MhG" secondAttribute="trailing" id="h8b-ME-Zju"/>
-                            <constraint firstItem="i4i-yh-5OB" firstAttribute="bottom" secondItem="0kb-fU-uBm" secondAttribute="bottom" id="lj8-BH-big"/>
+                            <constraint firstAttribute="bottom" secondItem="0kb-fU-uBm" secondAttribute="bottom" id="lj8-BH-big"/>
                             <constraint firstItem="0kb-fU-uBm" firstAttribute="top" secondItem="wOV-Pl-MhG" secondAttribute="bottom" id="qjv-BE-WQY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="i4i-yh-5OB"/>

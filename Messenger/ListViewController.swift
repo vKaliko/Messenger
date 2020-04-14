@@ -17,7 +17,10 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
     var chats = [Chat]()
     var db: Firestore!
     var profiles: [Profile]!
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tabBarController?.tabBar.isHidden = false
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem

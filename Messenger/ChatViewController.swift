@@ -22,6 +22,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.tabBar.isHidden = true
         textView.delegate = self
         title = chat.title
         textView.layer.cornerRadius = 7
@@ -58,16 +59,22 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = chat.messages[indexPath.row]
-        let reuseId = Auth.auth().currentUser?.uid == message.uid ? "MessageCell" : "ImageMessageCell"
+        let isMessageFromCurrentUser = Auth.auth().currentUser?.uid == message.uid
+        let reuseId = isMessageFromCurrentUser ? "MessageCell" : "ImageMessageCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath) as! MessageCell
         cell.messageLabel.text = message.text
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         let convertedDate = dateFormatter.string(from: message.time)
-        for profile in profiles {
-            if profile.id == message.uid {
-               cell.usernameLabel.text = profile.name + " - " + convertedDate
-               break
+        if isMessageFromCurrentUser {
+            cell.usernameLabel.text = convertedDate
+        }
+        else {
+            for profile in profiles {
+                if profile.id == message.uid {
+                   cell.usernameLabel.text = profile.name + " - " + convertedDate
+                   break
+                }
             }
         }
         return cell
@@ -103,13 +110,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
         }
-        if notification.name == UIResponder.keyboardWillShowNotification || notification.name.rawValue == UIResponder.keyboardFrameEndUserInfoKey {
-            bottomConstraint.constant = -keyboardRect.height
-            view.layoutIfNeeded()
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            bottomConstraint.constant = 0
+            //view.layoutIfNeeded()
         }
         else {
-            bottomConstraint.constant = 0
-            view.layoutIfNeeded()
+            bottomConstraint.constant = keyboardRect.height
+            //view.layoutIfNeeded()
         }
         
     }
