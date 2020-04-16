@@ -110,20 +110,24 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
         }
+        
         if notification.name == UIResponder.keyboardWillHideNotification {
-            bottomConstraint.constant = 0
-            //view.layoutIfNeeded()
+            bottomConstraint.constant = 15
         }
         else {
-            bottomConstraint.constant = keyboardRect.height
-            //view.layoutIfNeeded()
+            bottomConstraint.constant = keyboardRect.height - view.safeAreaInsets.bottom + 15
+        }
+        
+        UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }) { (completed) in
         }
         
     }
     
-        
-
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        textView.endEditing(true)
+    }
     
     /*
     // MARK: - Navigation
@@ -136,5 +140,3 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     */
 
 }
-
-
