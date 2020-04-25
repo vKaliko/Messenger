@@ -22,12 +22,14 @@ class ProfileViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateDoneButton()
+        //navigationItem.rightBarButtonItem = nil
         let handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
                 print("profilevc. Login change listener user = \(user)")
                 self.requestProfile(user.uid)
             }
         }
+        
     }
 
     @IBAction func done() {
@@ -48,6 +50,7 @@ class ProfileViewController: UITableViewController {
     }
     
     @IBAction func textDidChange(_ sender: UITextField) {
+        //navigationItem.rightBarButtonItem
         updateDoneButton()
     }
     

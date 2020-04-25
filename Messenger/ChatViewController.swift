@@ -62,6 +62,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let isMessageFromCurrentUser = Auth.auth().currentUser?.uid == message.uid
         let reuseId = isMessageFromCurrentUser ? "MessageCell" : "ImageMessageCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath) as! MessageCell
+        
         cell.messageLabel.text = message.text
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
@@ -70,6 +71,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.usernameLabel.text = convertedDate
         }
         else {
+            if indexPath.row % 2 == 0 {
+                cell.twoLettersLabel?.isHidden = true
+                cell.profileImageView?.isHidden = false
+            }
+            else {
+                cell.profileImageView?.isHidden = true
+                cell.twoLettersLabel?.isHidden = false
+            }
             for profile in profiles {
                 if profile.id == message.uid {
                    cell.usernameLabel.text = profile.name + " - " + convertedDate
