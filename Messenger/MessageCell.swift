@@ -22,7 +22,7 @@ class MessageCell: UITableViewCell {
 //        profileImageView.clipsToBounds = true
         if twoLettersLabel != nil {
             twoLettersLabel!.layer.cornerRadius = twoLettersLabel!.bounds.size.width / 2
-            twoLettersLabel!.clipsToBounds = true
+            twoLettersLabel!.layer.masksToBounds = true
         }
         
     }

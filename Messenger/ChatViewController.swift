@@ -62,7 +62,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let isMessageFromCurrentUser = Auth.auth().currentUser?.uid == message.uid
         let reuseId = isMessageFromCurrentUser ? "MessageCell" : "ImageMessageCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath) as! MessageCell
-        
         cell.messageLabel.text = message.text
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
@@ -71,18 +70,28 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.usernameLabel.text = convertedDate
         }
         else {
-            if indexPath.row % 2 == 0 {
-                cell.twoLettersLabel?.isHidden = true
-                cell.profileImageView?.isHidden = false
-            }
-            else {
-                cell.profileImageView?.isHidden = true
-                cell.twoLettersLabel?.isHidden = false
-            }
+            
             for profile in profiles {
                 if profile.id == message.uid {
-                   cell.usernameLabel.text = profile.name + " - " + convertedDate
-                   break
+                    let name = profile.name ?? profile.email
+                    if indexPath.row % 2 == 0 {
+                        cell.profileImageView?.isHidden = true
+                        cell.twoLettersLabel?.isHidden = false
+                       
+                        let wordArray = name.split(separator: " ")
+                        if wordArray.count >= 2 {
+                            cell.twoLettersLabel?.text = String(wordArray[0][wordArray[0].startIndex]) + String(wordArray[1][wordArray[1].startIndex])
+                        }
+                        else {
+                            cell.twoLettersLabel?.text = String(name[name.startIndex])
+                        }
+                    }
+                    else {
+                        cell.profileImageView?.isHidden = false
+                        cell.twoLettersLabel?.isHidden = true
+                    }
+                    cell.usernameLabel.text = name + " - " + convertedDate
+                    break
                 }
             }
         }

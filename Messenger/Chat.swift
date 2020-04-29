@@ -75,13 +75,20 @@ class Message: Codable {
     }
 }
 
-class Profile: Codable {
+class Profile {
+    
     var id: String
-    var name: String
+    var email: String
+    var name: String?
+    var photoUrl: String?
+    var photo: UIImage?
     
     init(dict: [String : Any], id: String) {
-        self.name = dict["name"] as! String
+        self.name = dict["name"] as? String
         self.id = id
+        self.email = dict["email"] as! String
+        self.photoUrl = dict["photoUrl"] as? String
+        
     }
     
 }

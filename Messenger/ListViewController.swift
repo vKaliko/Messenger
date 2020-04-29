@@ -29,13 +29,14 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
             return
         }
         authUI.delegate = self
-        authUI.providers = [FUIEmailAuth()]
+        authUI.providers = [FUIEmailAuth(), FUIGoogleAuth()]
         Auth.auth().addStateDidChangeListener { (auth, user) in
             print("listvc. Login change listener user = \(user)")
             if auth.currentUser == nil {
                 self.present(authUI.authViewController(), animated: true, completion: nil)
             }
         }
+        
         db.collection("profiles").addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Error fetching: \(err)")
