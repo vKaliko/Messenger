@@ -18,8 +18,10 @@ class MessageCell: UITableViewCell {
         super.awakeFromNib()
         messageLabel.layer.cornerRadius = 5
         messageLabel.clipsToBounds = true
-//        profileImageView.layer.cornerRadius = profileImageView.bounds.size.width / 2
-//        profileImageView.clipsToBounds = true
+        if profileImageView != nil {
+            profileImageView!.layer.cornerRadius = profileImageView!.bounds.size.width / 2
+            profileImageView!.clipsToBounds = true
+        }
         if twoLettersLabel != nil {
             twoLettersLabel!.layer.cornerRadius = twoLettersLabel!.bounds.size.width / 2
             twoLettersLabel!.layer.masksToBounds = true

@@ -79,12 +79,12 @@ class Profile {
     
     var id: String
     var email: String
-    var name: String?
+    var displayName: String?
     var photoUrl: String?
     var photo: UIImage?
     
     init(dict: [String : Any], id: String) {
-        self.name = dict["name"] as? String
+        self.displayName = dict["displayName"] as? String
         self.id = id
         self.email = dict["email"] as! String
         self.photoUrl = dict["photoUrl"] as? String

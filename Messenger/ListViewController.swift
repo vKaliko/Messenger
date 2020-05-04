@@ -46,6 +46,17 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                 for document in querySnapshot!.documents {
                     let d = document.data()
                     let p = Profile(dict: d, id: document.documentID)
+                    if let photoUrl = p.photoUrl, let url = URL(string: photoUrl) {
+                       URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                           if error != nil {
+                               print(error!)
+                               return
+                           }
+                           DispatchQueue.main.async {
+                               p.photo = UIImage(data: data!)
+                           }
+                       }).resume()
+                    }
                     newProfiles.append(p)
                 }
                 self.profiles = newProfiles

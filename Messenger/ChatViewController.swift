@@ -70,25 +70,24 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.usernameLabel.text = convertedDate
         }
         else {
-            
             for profile in profiles {
                 if profile.id == message.uid {
-                    let name = profile.name ?? profile.email
-                    if indexPath.row % 2 == 0 {
-                        cell.profileImageView?.isHidden = true
-                        cell.twoLettersLabel?.isHidden = false
-                       
-                        let wordArray = name.split(separator: " ")
-                        if wordArray.count >= 2 {
-                            cell.twoLettersLabel?.text = String(wordArray[0][wordArray[0].startIndex]) + String(wordArray[1][wordArray[1].startIndex])
-                        }
-                        else {
-                            cell.twoLettersLabel?.text = String(name[name.startIndex])
-                        }
-                    }
-                    else {
+                    let name = profile.displayName ?? profile.email
+                    if let photo = profile.photo {
                         cell.profileImageView?.isHidden = false
                         cell.twoLettersLabel?.isHidden = true
+                        cell.profileImageView?.image = photo
+                    }
+                    else {
+                        cell.profileImageView?.isHidden = true
+                        cell.twoLettersLabel?.isHidden = false
+                        let wordArray = name.split(separator: " ")
+                        if wordArray.count >= 2 {
+                         cell.twoLettersLabel?.text = String(wordArray[0][wordArray[0].startIndex]) + String(wordArray[1][wordArray[1].startIndex])
+                        }
+                        else {
+                         cell.twoLettersLabel?.text = String(name[name.startIndex])
+                        }
                     }
                     cell.usernameLabel.text = name + " - " + convertedDate
                     break

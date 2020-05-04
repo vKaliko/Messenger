@@ -190,9 +190,13 @@ PODS:
   - Firebase/Firestore (6.18.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 1.11.0)
+  - Firebase/Messaging (6.18.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 4.3.0)
   - Firebase/Storage (6.18.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 3.5.0)
+  - FirebaseAnalyticsInterop (1.5.0)
   - FirebaseAuth (6.4.3):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 6.6)
@@ -229,6 +233,24 @@ PODS:
     - "gRPC-C++ (= 0.0.9)"
     - leveldb-library (~> 1.22)
     - nanopb (~> 0.3.901)
+  - FirebaseInstallations (1.1.1):
+    - FirebaseCore (~> 6.6)
+    - GoogleUtilities/UserDefaults (~> 6.5)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstanceID (4.3.4):
+    - FirebaseCore (~> 6.6)
+    - FirebaseInstallations (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/UserDefaults (~> 6.5)
+  - FirebaseMessaging (4.3.1):
+    - FirebaseAnalyticsInterop (~> 1.5)
+    - FirebaseCore (~> 6.6)
+    - FirebaseInstanceID (~> 4.3)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.5)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Reachability (~> 6.5)
+    - GoogleUtilities/UserDefaults (~> 6.5)
+    - Protobuf (>= 3.9.2, ~> 3.9)
   - FirebaseStorage (3.5.0):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 6.0)
@@ -322,6 +344,8 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - PromisesObjC (1.2.8)
+  - Protobuf (3.11.4)
   - SDWebImage (5.6.0):
     - SDWebImage/Core (= 5.6.0)
   - SDWebImage/Core (5.6.0)
@@ -329,6 +353,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Firestore
+  - Firebase/Messaging
   - FirebaseUI
 
 SPEC REPOS:
@@ -339,6 +364,7 @@ SPEC REPOS:
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Firebase
+    - FirebaseAnalyticsInterop
     - FirebaseAuth
     - FirebaseAuthInterop
     - FirebaseCore
@@ -346,6 +372,9 @@ SPEC REPOS:
     - FirebaseCoreDiagnosticsInterop
     - FirebaseDatabase
     - FirebaseFirestore
+    - FirebaseInstallations
+    - FirebaseInstanceID
+    - FirebaseMessaging
     - FirebaseStorage
     - FirebaseUI
     - GoogleDataTransport
@@ -358,6 +387,8 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - PromisesObjC
+    - Protobuf
     - SDWebImage
 
 SPEC CHECKSUMS:
@@ -367,6 +398,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
   FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
   Firebase: 0490eca762a72e4f1582319539153897f1508dee
+  FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
   FirebaseAuth: 5ce2b03a3d7fe56b7a6e4c5ec7ff1522890b1d6f
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
   FirebaseCore: 78276943ad85e616dfa54dafa6c89512987d9d60
@@ -374,6 +406,9 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseDatabase: 0144e0706a4761f1b0e8679572eba8095ddb59be
   FirebaseFirestore: a23d596ae3a8c13d3b8353b565d2adfb690f9032
+  FirebaseInstallations: acb3216eb9784d3b1d2d2d635ff74fa892cc0c44
+  FirebaseInstanceID: cef67c4967c7cecb56ea65d8acbb4834825c587b
+  FirebaseMessaging: 828e66eb357a893e3cebd9ee0f6bc1941447cc94
   FirebaseStorage: 6c5263796af3b1be82ed173598aade47535fe125
   FirebaseUI: e57e9b9c4340631151fbe67a14206d23d0974f37
   GoogleDataTransport: 653963cf5be60fb59cf051e070f0836fdc305f81
@@ -386,8 +421,10 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+  Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
   SDWebImage: 21b19f56b4226cdfe3aefe4e6848dc43ed129a86
 
-PODFILE CHECKSUM: 7ffbc623e0eca69daa87ef3d2e4739cc08d39859
+PODFILE CHECKSUM: 4986f63bdc4b589e521d45f2f505f006deb03445
 
 COCOAPODS: 1.9.0
