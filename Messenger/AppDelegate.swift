@@ -50,6 +50,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
+        Messaging.messaging().subscribe(toTopic: "messages") { error in
+            if let err = error {
+                print("Error: \(err)")
+            }
+            else {
+                print("Subscribed to messages topic")
+            }
+
+        }
     }
 }
 

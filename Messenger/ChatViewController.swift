@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import FirebaseMessaging
 
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
@@ -112,6 +113,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         let db = Firestore.firestore()
         db.collection("chats").document(chat.id).setData(chat.toDict())
+        let notification = [
+            "notification": [
+            "title": "New Message",
+            "body": "This is a message"
+          ],
+          "topic": "messages"
+            ] as [String : Any]
+        Messaging.messaging().sendMessage(notification, to: "messages", withMessageID: "123", timeToLive: 3600*24)
     }
     
     func textViewDidChange(_ textView: UITextView) {
