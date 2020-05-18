@@ -11,6 +11,7 @@ target 'Messenger' do
     pod 'Firebase/Firestore'
     pod 'FirebaseUI'
     pod 'Firebase/Messaging'
+    pod 'Firebase/Storage'
     
 end
 

@@ -80,7 +80,7 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pNQ-0T-Q6h" userLabel="profileImageView">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pNQ-0T-Q6h" userLabel="profileImageView">
                                                             <rect key="frame" x="38" y="192.33333333333331" width="30" height="27"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="Tzu-i8-8bx"/>
@@ -192,27 +192,61 @@
                         <sections>
                             <tableViewSection id="TYc-86-oYf">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="YDe-sO-9RA">
-                                        <rect key="frame" x="0.0" y="18" width="414" height="43.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="147" id="YDe-sO-9RA">
+                                        <rect key="frame" x="0.0" y="18" width="414" height="147"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YDe-sO-9RA" id="T7T-dd-9gA">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="147"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BZt-dp-404" userLabel="nameTextField">
-                                                    <rect key="frame" x="20" y="2" width="374" height="40"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5Ld-CU-dVX" userLabel="profileEditImageStack">
+                                                    <rect key="frame" x="20" y="10" width="374" height="130"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testImage" translatesAutoresizingMaskIntoConstraints="NO" id="z0u-o8-S66" customClass="CircleImageView" customModule="Messenger" customModuleProvider="target">
+                                                            <rect key="frame" x="137" y="0.0" width="100" height="100"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="100" id="3da-tM-76R"/>
+                                                                <constraint firstAttribute="height" constant="100" id="JHz-Ch-NwC"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkx-H9-Ez8">
+                                                            <rect key="frame" x="172" y="100" width="30" height="30"/>
+                                                            <state key="normal" title="Edit"/>
+                                                            <connections>
+                                                                <action selector="editButtonAction" destination="0a6-ft-N9p" eventType="touchUpInside" id="jmu-lo-hbW"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5Ld-CU-dVX" firstAttribute="leading" secondItem="T7T-dd-9gA" secondAttribute="leading" constant="20" id="NPv-Gs-QqF"/>
+                                                <constraint firstAttribute="trailing" secondItem="5Ld-CU-dVX" secondAttribute="trailing" constant="20" id="ja7-sI-afO"/>
+                                                <constraint firstItem="5Ld-CU-dVX" firstAttribute="top" secondItem="T7T-dd-9gA" secondAttribute="top" constant="10" id="vD2-5O-yyJ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="50" id="brz-Re-vVb">
+                                        <rect key="frame" x="0.0" y="165" width="414" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="brz-Re-vVb" id="hfQ-KU-ZSN">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MnA-fl-ldo" userLabel="nameTextField">
+                                                    <rect key="frame" x="20" y="10" width="374" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="textDidChange:" destination="0a6-ft-N9p" eventType="editingChanged" id="dtv-IW-9ra"/>
+                                                        <action selector="textDidChange:" destination="0a6-ft-N9p" eventType="editingChanged" id="GLB-E7-hfn"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="BZt-dp-404" firstAttribute="top" secondItem="T7T-dd-9gA" secondAttribute="top" constant="2" id="brE-fW-5xr"/>
-                                                <constraint firstAttribute="bottom" secondItem="BZt-dp-404" secondAttribute="bottom" constant="2" id="g5Z-9F-Ga6"/>
-                                                <constraint firstAttribute="trailing" secondItem="BZt-dp-404" secondAttribute="trailing" constant="20" id="j3P-cb-p5B"/>
-                                                <constraint firstItem="BZt-dp-404" firstAttribute="leading" secondItem="T7T-dd-9gA" secondAttribute="leading" constant="20" id="vMy-cd-QS2"/>
+                                                <constraint firstAttribute="trailing" secondItem="MnA-fl-ldo" secondAttribute="trailing" constant="20" id="BU2-8v-HVJ"/>
+                                                <constraint firstItem="MnA-fl-ldo" firstAttribute="top" secondItem="hfQ-KU-ZSN" secondAttribute="top" constant="10" id="CF7-lW-9dV"/>
+                                                <constraint firstItem="MnA-fl-ldo" firstAttribute="leading" secondItem="hfQ-KU-ZSN" secondAttribute="leading" constant="20" id="DpO-S0-aSZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="MnA-fl-ldo" secondAttribute="bottom" constant="10" id="gk5-8L-UzI"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -239,12 +273,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="doneButton" destination="xmF-3Y-QnL" id="UZ6-Ed-Ydk"/>
-                        <outlet property="textField" destination="BZt-dp-404" id="WRO-Fj-KJh"/>
+                        <outlet property="profilePhotoImageView" destination="z0u-o8-S66" id="sKV-Il-Lbx"/>
+                        <outlet property="textField" destination="MnA-fl-ldo" id="JcY-cj-V96"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dpf-EL-46Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="528" y="816"/>
+            <point key="canvasLocation" x="527.536231884058" y="815.625"/>
         </scene>
         <!--Profile-->
         <scene sceneID="6mh-FX-fcg">
@@ -355,5 +390,6 @@
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.crop.square.fill" catalog="system" width="128" height="114"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="testImage" width="341.33334350585938" height="256"/>
     </resources>
 </document>

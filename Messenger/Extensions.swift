@@ -53,4 +53,16 @@ class PaddingLabel: UILabel {
 
 }
 
-
+@IBDesignable class CircleImageView: UIImageView {
+    
+//    override internal var frame: CGRect {
+//        set {
+//            super.frame = newValue
+//            self.clipsToBounds = true
+//            self.layer.cornerRadius = self.bounds.size.width / 2
+//        }
+//        get {
+//            return super.frame
+//        }
+//    }
+}
