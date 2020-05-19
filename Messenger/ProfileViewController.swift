@@ -24,7 +24,6 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
- 
         imagePicker.delegate = self
         updateDoneButton()
         //navigationItem.rightBarButtonItem = nil
@@ -63,8 +62,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
                   return
                 }
                 self.profile.photoUrl = downloadURL.absoluteString
-                let profileImageRef = self.db.collection("profiles").document(self.profile.id)
-                profileImageRef.updateData([
+                self.db.collection("profiles").document(self.profile.id).updateData([
                     "photoUrl": self.profile.photoUrl
                 ]) { err in
                     if let err = err {
@@ -80,8 +78,8 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
             guard let uid = Auth.auth().currentUser?.uid else {
                 return
             }
-            let dict = ["name" : textField.text]
-            db.collection("profiles").document(uid).setData(dict) { err in
+            profile.displayName = textField.text
+            db.collection("profiles").document(uid).updateData(["name": profile.displayName]){ err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 }

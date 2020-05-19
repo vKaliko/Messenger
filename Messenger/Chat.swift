@@ -88,7 +88,5 @@ class Profile {
         self.id = id
         self.email = dict["email"] as! String
         self.photoUrl = dict["photoUrl"] as? String
-        
     }
-    
 }
