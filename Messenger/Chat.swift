@@ -84,8 +84,8 @@ class Profile {
     var photo: UIImage?
     
     init(dict: [String : Any], id: String) {
-        self.displayName = dict["displayName"] as? String
         self.id = id
+        self.displayName = dict["displayName"] as? String
         self.email = dict["email"] as! String
         self.photoUrl = dict["photoUrl"] as? String
     }

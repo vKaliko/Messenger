@@ -21,43 +21,28 @@ const createProfile = (userRecord, context) => {
     .catch(console.error);
 };
 
+
+const sendNotification = (change, context) => {
+	const dict = change.after.data();
+	const allMessages = dict['messages'];
+  const lastMessage = allMessages[allMessages.length-1];
+	const body = lastMessage['text'];
+  //let nameOfChat = dict["title"] as! String
+  console.log('Body: ', dict);
+  var message = {
+    notification: {
+      title: 'New Message',
+      body: body
+    },
+	topic: 'all'
+  };
+
+
+  // Send a message to devices subscribed to the provided topic.
+  return admin.messaging().send(message);
+};
+	
 module.exports = {
   authOnCreate: functions.auth.user().onCreate(createProfile),
+  notifOnMessage: functions.firestore.document('chats/{chatId}').onUpdate(sendNotification),
 };
-
-exports.updateUser = functions.firestore
-    .document('chats/{chatId}')
-    .onUpdate((change, context) => {
-      // Get an object representing the document
-      // e.g. {'name': 'Marie', 'age': 66}
-      const newValue = change.after.data();
-
-      // ...or the previous value before this update
-      const previousValue = change.before.data();
-
-      // access a particular field as you would any JS property
-      const name = newValue.name;
-
-      // perform desired operations ...
-	  //const newMessages = newValue["messages"];
-	  // The topic name can be optionally prefixed with "/topics/".
-	  var message = {
-	    notification: {
-	      title: 'New Message',
-	      body: 'This is a message'
-	    },
-		topic: 'messages'
-	  };
-	  
-
-	  // Send a message to devices subscribed to the provided topic.
-	  admin.messaging().send(message)
-	    .then((response) => {
-	      // Response is a message ID string.
-	      console.log('Successfully sent message:', response);
-	    })
-	    .catch((error) => {
-	      console.log('Error sending message:', error);
-	    });  
-    });
-	
