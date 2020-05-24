@@ -17,7 +17,7 @@ const createProfile = (userRecord, context) => {
   return db
     .collection('profiles')
     .doc(uid)
-    .set({"email": email, "displayName": displayName, "photoUrl": photoURL})
+    .set({'email': email, 'displayName': displayName, 'photoUrl': photoURL})
     .catch(console.error);
 };
 
@@ -26,20 +26,36 @@ const sendNotification = (change, context) => {
 	const dict = change.after.data();
 	const allMessages = dict['messages'];
   const lastMessage = allMessages[allMessages.length-1];
-	const body = lastMessage['text'];
-  //let nameOfChat = dict["title"] as! String
-  console.log('Body: ', dict);
-  var message = {
-    notification: {
-      title: 'New Message',
-      body: body
-    },
-	topic: 'all'
-  };
-
-
-  // Send a message to devices subscribed to the provided topic.
-  return admin.messaging().send(message);
+	const text = lastMessage['text'];
+	const uid = lastMessage['uid'];
+	const chatTitle = dict['title'];
+	const userRef = db.collection('profiles').doc(uid);
+	const userDoc = userRef.get()
+	  .then(doc => {
+	    if (!doc.exists) {
+	      console.log('No such document!');
+				throw new Error('No such doc');
+	    } 
+			else {
+				const profileDict = doc.data();
+	      console.log('Document data:', profileDict);
+				const displayName = profileDict['displayName'];
+			  console.log('Body: ', dict);
+			  var message = {
+			    notification: {
+			      title: displayName + ' in ' + chatTitle,
+			      body: text
+			    },
+				topic: 'all'
+			  };
+	
+			  return admin.messaging().send(message);
+	    }
+	  })
+	  .catch(err => {
+	    console.log('Error getting document', err);
+			throw new Error('Error getting doc');
+	  });
 };
 	
 module.exports = {
