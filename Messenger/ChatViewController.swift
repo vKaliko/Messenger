@@ -45,8 +45,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        let indexPath = IndexPath(row: chat.messages.count-1, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        if chat.messages.count >= 1 {
+            let indexPath = IndexPath(row: chat.messages.count-1, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
     }
     
     // MARK: - Table view data source
