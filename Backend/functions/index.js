@@ -30,6 +30,7 @@ const sendNotification = (change, context) => {
 	const uid = lastMessage['uid'];
 	const chatTitle = dict['title'];
 	const userRef = db.collection('profiles').doc(uid);
+	const chatId = context.params.chatId;
 	const userDoc = userRef.get()
 	  .then(doc => {
 	    if (!doc.exists) {
@@ -41,12 +42,16 @@ const sendNotification = (change, context) => {
 	      console.log('Document data:', profileDict);
 				const displayName = profileDict['displayName'];
 			  console.log('Body: ', dict);
+				console.log(chatId);
 			  var message = {
 			    notification: {
 			      title: displayName + ' in ' + chatTitle,
 			      body: text
 			    },
-				topic: 'all'
+					data: {
+						chatId: chatId
+					},
+					topic: 'all'
 			  };
 	
 			  return admin.messaging().send(message);

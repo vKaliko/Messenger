@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lj1-eu-nvL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lj1-eu-nvL">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wOV-Pl-MhG">
-                                <rect key="frame" x="0.0" y="88" width="414" height="662"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="660"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MessageCell" id="TAh-o2-TIT" customClass="MessageCell" customModule="Messenger" customModuleProvider="target">
@@ -132,18 +132,19 @@
                                 </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0kb-fU-uBm" userLabel="sendStack">
-                                <rect key="frame" x="20" y="765" width="374" height="33"/>
+                                <rect key="frame" x="20" y="763" width="374" height="35"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsVerticalScrollIndicator="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="uzr-Gd-xWF">
-                                        <rect key="frame" x="0.0" y="0.0" width="334.33333333333331" height="33"/>
+                                        <rect key="frame" x="0.0" y="2" width="329" height="33"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqz-S8-0Zv">
-                                        <rect key="frame" x="354.33333333333331" y="0.0" width="19.666666666666686" height="33"/>
+                                        <rect key="frame" x="349" y="0.0" width="25" height="35"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="33" id="8Kx-as-YUV"/>
+                                            <constraint firstAttribute="height" constant="35" id="8Kx-as-YUV"/>
+                                            <constraint firstAttribute="width" constant="25" id="szW-I3-epL"/>
                                         </constraints>
                                         <state key="normal" image="arrow.up.circle.fill" catalog="system"/>
                                         <connections>

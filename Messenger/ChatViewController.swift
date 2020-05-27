@@ -30,11 +30,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         textView.clipsToBounds = true
         textView.layer.borderColor = UIColor.lightGray.cgColor
         textView.layer.borderWidth = 0.5
+
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        
     }
     
     deinit {
@@ -42,9 +42,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
-        
-        //bottomConstraint.constant = 300
-        //view.layoutIfNeeded()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        let indexPath = IndexPath(row: chat.messages.count-1, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
     
     // MARK: - Table view data source
 
@@ -56,7 +59,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chat.messages.count
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = chat.messages[indexPath.row]
@@ -111,16 +113,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.reloadData()
         let indexPath = IndexPath(row: chat.messages.count-1, section: 0)
         tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-        let db = Firestore.firestore()
-        db.collection("chats").document(chat.id).setData(chat.toDict())
-        let notification = [
-            "notification": [
-            "title": "New Message",
-            "body": "This is a message"
-          ],
-          "topic": "messages"
-            ] as [String : Any]
-        Messaging.messaging().sendMessage(notification, to: "messages", withMessageID: "123", timeToLive: 3600*24)
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -154,15 +146,4 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         textView.endEditing(true)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -14,7 +14,7 @@ class PaddingLabel: UILabel {
     let padding: UIEdgeInsets
 
     // Create a new PaddingLabel instance programamtically with the desired insets
-    required init(padding: UIEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)) {
+    required init(padding: UIEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)) {
         self.padding = padding
         super.init(frame: CGRect.zero)
     }
@@ -27,7 +27,7 @@ class PaddingLabel: UILabel {
 
     // Create a new PaddingLabel instance from Storyboard with default insets
     required init?(coder aDecoder: NSCoder) {
-        padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5) // set desired insets value according to your needs
+        padding = UIEdgeInsets(top: 2, left: 5, bottom: 2, right: 5) // set desired insets value according to your needs
         super.init(coder: aDecoder)
     }
 
