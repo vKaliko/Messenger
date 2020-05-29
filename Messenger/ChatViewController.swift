@@ -43,14 +43,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        if chat.messages.count >= 1 {
-            let indexPath = IndexPath(row: chat.messages.count-1, section: 0)
-            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-        }
-    }
-    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(true)
+//        if chat.messages.count >= 1 {
+//            let indexPath = IndexPath(row: chat.messages.count-1, section: 0)
+//            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+//        }
+//    }
+//
     // MARK: - Table view data source
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -115,6 +115,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.reloadData()
         let indexPath = IndexPath(row: chat.messages.count-1, section: 0)
         tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        let db = Firestore.firestore()
+        db.collection("chats").document(chat.id).setData(chat.toDict())
     }
     
     func textViewDidChange(_ textView: UITextView) {
