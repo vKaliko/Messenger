@@ -11,7 +11,7 @@ import Firebase
 import FirebaseFirestore
 import FirebaseUI
 import FirebaseMessaging
-
+import Contacts
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {

@@ -19,7 +19,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var chat: Chat!
-    var profiles: [Profile]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,14 +42,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(true)
-//        if chat.messages.count >= 1 {
-//            let indexPath = IndexPath(row: chat.messages.count-1, section: 0)
-//            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-//        }
-//    }
-//
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        if chat.messages.count >= 1 {
+            let indexPath = IndexPath(row: chat.messages.count-1, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
+    }
+
     // MARK: - Table view data source
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -75,7 +74,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.usernameLabel.text = convertedDate
         }
         else {
-            for profile in profiles {
+            for profile in Profile.allProfiles {
                 if profile.id == message.uid {
                     let name = profile.displayName ?? profile.email
                     if let photo = profile.photo {

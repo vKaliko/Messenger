@@ -76,12 +76,13 @@ class Message: Codable {
 }
 
 class Profile {
-    
+    static var allProfiles: [Profile]!
     var id: String
     var email: String
     var displayName: String?
     var photoUrl: String?
     var photo: UIImage?
+
     
     init(dict: [String : Any], id: String) {
         self.id = id
@@ -90,3 +91,4 @@ class Profile {
         self.photoUrl = dict["photoUrl"] as? String
     }
 }
+

@@ -39,10 +39,7 @@ const sendNotification = (change, context) => {
 	    } 
 			else {
 				const profileDict = doc.data();
-	      console.log('Document data:', profileDict);
 				const displayName = profileDict['displayName'];
-			  console.log('Body: ', dict);
-				console.log(chatId);
 			  var message = {
 			    notification: {
 			      title: displayName + ' in ' + chatTitle,

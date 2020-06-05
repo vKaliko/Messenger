@@ -16,11 +16,12 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
     
     var chats = [Chat]()
     var db: Firestore!
-    var profiles: [Profile]!
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tabBarController?.tabBar.isHidden = false
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
@@ -59,7 +60,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                     }
                     newProfiles.append(p)
                 }
-                self.profiles = newProfiles
+                Profile.allProfiles = newProfiles
             }
         }
         db.collection("chats").order(by: "title").addSnapshotListener { (querySnapshot, err) in
@@ -147,8 +148,6 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
             return
         }
         chatVC.chat = chats[row]
-        chatVC.profiles = profiles
-        
     }
     @IBAction func addChat(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "New Chat", message: nil, preferredStyle: .alert)
