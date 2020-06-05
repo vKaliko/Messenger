@@ -79,7 +79,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
                 return
             }
             profile.displayName = textField.text
-            db.collection("profiles").document(uid).updateData(["name": profile.displayName]){ err in
+            db.collection("profiles").document(uid).updateData(["displayName": profile.displayName]){ err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 }
