@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseUI
 import FirebaseFirestore
 
-class ProfileViewController: UITableViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class ProfileViewController: UITableViewController, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate{
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
@@ -26,6 +26,8 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         super.viewDidLoad()
         imagePicker.delegate = self
         updateDoneButton()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(_:)))
+        self.view.addGestureRecognizer(tapGesture)
         //navigationItem.rightBarButtonItem = nil
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
@@ -35,9 +37,11 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         }
         profilePhotoImageView.layer.cornerRadius = profilePhotoImageView.frame.width / 2
         profilePhotoImageView.clipsToBounds = true
-        
     }
     
+    @objc func dismissKeyboard(_ sender: UIGestureRecognizer) {
+        textField.resignFirstResponder()
+    }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true, completion: nil)
@@ -127,6 +131,10 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
             return
         }
         try! authUI.signOut()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 
 }

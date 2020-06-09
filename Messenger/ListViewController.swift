@@ -30,7 +30,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
             return
         }
         authUI.delegate = self
-        authUI.providers = [FUIEmailAuth(), FUIGoogleAuth()]
+        authUI.providers = [FUIEmailAuth(), FUIGoogleAuth(), FUIOAuth.appleAuthProvider()]
         Auth.auth().addStateDidChangeListener { (auth, user) in
             print("listvc. Login change listener user = \(user)")
             if auth.currentUser == nil {
