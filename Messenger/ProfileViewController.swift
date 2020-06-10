@@ -78,6 +78,8 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     }
 
     @IBAction func done() {
+        textField.resignFirstResponder()
+        doneButton.isEnabled = false
         if textField.text?.count != 0 {
             guard let uid = Auth.auth().currentUser?.uid else {
                 return
@@ -103,7 +105,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     }
     
     func updateDoneButton() {
-        if let text = textField.text, !text.isEmpty {
+        if let text = textField.text, !text.isEmpty && text != profile.displayName {
             doneButton.isEnabled = true
         }
         else {
@@ -132,9 +134,4 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         }
         try! authUI.signOut()
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-
 }

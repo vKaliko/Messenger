@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+<<<<<<< HEAD
+	<key>NSContactsUsageDescription</key>
+	<string>It will help you invite your contacts.</string>
+=======
+>>>>>>> 1cab3e90573b2bf2053deeb49d8d797cf25b1f4d
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

@@ -12,7 +12,7 @@ import MessageUI
 
 class ContactsViewController: UITableViewController, MFMessageComposeViewControllerDelegate {
     
-    
+    var vSpinner: UIView?
     var contacts = [CNContact]()
     var selectedArr = [String]()
     var contactsPhoneNumbers = [String]()
@@ -62,7 +62,9 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.showSpinner(onView: self.view)
         fetchContacts()
+        self.removeSpinner()
         self.tableView.isEditing = true
         self.tableView.allowsMultipleSelectionDuringEditing = true
     }
@@ -107,6 +109,28 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
             
         }
     }
+    
+    func showSpinner(onView: UIView) {
+           let spinnerView = UIView.init(frame: onView.bounds)
+           spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+           let ai = UIActivityIndicatorView.init(style: .whiteLarge)
+           ai.startAnimating()
+           ai.center = spinnerView.center
+           
+           DispatchQueue.main.async {
+               spinnerView.addSubview(ai)
+               onView.addSubview(spinnerView)
+           }
+           
+           vSpinner = spinnerView
+       }
+       
+       func removeSpinner() {
+           DispatchQueue.main.async {
+            self.vSpinner?.removeFromSuperview()
+            self.vSpinner = nil
+           }
+       }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         controller.dismiss(animated: true, completion: nil)
