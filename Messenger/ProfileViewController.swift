@@ -120,6 +120,12 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
                 if let dict = document.data() {
                     self.profile = Profile(dict: dict, id: uid)
                     self.textField.text = self.profile.displayName
+                    if let url = self.profile.photoUrl {
+                        let imageUrl = URL(string: url)!
+                        let imageData = try! Data(contentsOf: imageUrl)
+                        let image = UIImage(data: imageData)
+                        self.profilePhotoImageView.image = image
+                    }
                 }
             }
             else {
