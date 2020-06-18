@@ -17,42 +17,79 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
     var selectedArr = [String]()
     var contactsPhoneNumbers = [String]()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        showSpinner(onView: self.view)
+        fetchContacts()
+        removeSpinner()
+        self.tableView.isEditing = true
+        self.tableView.allowsMultipleSelectionDuringEditing = true
+    }
+    
+    
     private func fetchContacts() {
-        print("Lalalalalallalala")
         let store = CNContactStore()
         store.requestAccess(for: .contacts) { (granted, err) in
             if let err = err {
                 print("Error aquired", err)
             }
+    //        if granted == true {
+    //            print("Access granted")
+    //
+    //                let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey]
+    //                let predicate = CNContact.predicateForContacts(withIdentifiers: [CNContactPhoneNumbersKey])
+    //                do {
+    //                  let contacts = try store.unifiedContactsMatchingPredicate(
+    //                    predicate, keysToFetch: keys as [CNContactDescriptor])
+    //
+    //                  contacts
+    //
+    //                }
+    //                catch let err {
+    //                  print(err)
+    //                }
+    //        store.requestAccess(for: .contacts) { (granted, err) in
+    //            if let err = err {
+    //                print("Error aquired", err)
+    //            }
             if granted == true {
                 print("Access granted")
-                let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey]
-                let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
-                do {
-                    try store.enumerateContacts(with: request, usingBlock: { (contact, stopPointerIfYouWantToStopEnumerating) in
-                        if let contactPhoneNumber = contact.phoneNumbers.first?.value.stringValue {
-                            var counter = 0
-                            for profile in Profile.allProfiles {
-                                if let contactEmail = contact.emailAddresses.first?.value, contact.givenName != nil || contact.familyName != nil {
-                                    if contactEmail as String == profile.email {
-                                        counter += 1
+                DispatchQueue.global().async { [weak self] in
+                    guard let self = self else {
+                      return
+                    }
+                    var filteredContacts = [CNContact]()
+                    do {
+                        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey]
+                        let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+                        try store.enumerateContacts(with: request, usingBlock: { (contact, stopPointerIfYouWantToStopEnumerating) in
+                            if let _ = contact.phoneNumbers.first?.value.stringValue {
+                                var found = false
+                                for profile in Profile.allProfiles {
+                                    if let contactEmail = contact.emailAddresses.first?.value {
+                                        if contactEmail as String == profile.email {
+                                            found = true
+                                            break
+                                        }
                                     }
                                 }
+                                if !found {
+                                    filteredContacts.append(contact)
+                                }
                             }
-                            if counter != 1 {
-                                self.contacts.append(contact)
-                                self.contactsPhoneNumbers.append(contactPhoneNumber)
-                                counter = 0
+                            else {
+                                print("No phone number found")
                             }
-                        }
-                        else {
-                            print("No phone number found")
-                        }
-                        print(self.contacts)
-                    })
-                }
-                catch let err {
-                    print("Faild enumerating", err)
+                            print(filteredContacts)
+                        })
+                    }
+                    catch let err {
+                        print("Faild enumerating", err)
+                    }
+                    DispatchQueue.main.async {
+                        self.contacts = filteredContacts
+                        self.tableView.reloadData()
+                    }
                 }
             }
             else {
@@ -60,15 +97,6 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
             }
         }
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.showSpinner(onView: self.view)
-        fetchContacts()
-        self.removeSpinner()
-        self.tableView.isEditing = true
-        self.tableView.allowsMultipleSelectionDuringEditing = true
-    }
-    
     //MARK: - UITableViewDelegate
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -112,8 +140,7 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
     
     func showSpinner(onView: UIView) {
            let spinnerView = UIView.init(frame: onView.bounds)
-           spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-           let ai = UIActivityIndicatorView.init(style: .whiteLarge)
+            let ai = UIActivityIndicatorView.init(style: .UIActivityIndicatorView.Style.large)
            ai.startAnimating()
            ai.center = spinnerView.center
            
