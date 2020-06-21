@@ -19,9 +19,7 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showSpinner(onView: self.view)
         fetchContacts()
-        removeSpinner()
         self.tableView.isEditing = true
         self.tableView.allowsMultipleSelectionDuringEditing = true
     }
@@ -59,6 +57,7 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
                       return
                     }
                     var filteredContacts = [CNContact]()
+                    var filteredPhoneNumbers = [String]()
                     do {
                         let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey]
                         let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
@@ -75,6 +74,7 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
                                 }
                                 if !found {
                                     filteredContacts.append(contact)
+                                    filteredPhoneNumbers.append((contact.phoneNumbers.first?.value.stringValue)!)
                                 }
                             }
                             else {
@@ -88,6 +88,7 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
                     }
                     DispatchQueue.main.async {
                         self.contacts = filteredContacts
+                        self.contactsPhoneNumbers = filteredPhoneNumbers
                         self.tableView.reloadData()
                     }
                 }
@@ -138,26 +139,26 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
         }
     }
     
-    func showSpinner(onView: UIView) {
-           let spinnerView = UIView.init(frame: onView.bounds)
-            let ai = UIActivityIndicatorView.init(style: .UIActivityIndicatorView.Style.large)
-           ai.startAnimating()
-           ai.center = spinnerView.center
-           
-           DispatchQueue.main.async {
-               spinnerView.addSubview(ai)
-               onView.addSubview(spinnerView)
-           }
-           
-           vSpinner = spinnerView
-       }
-       
-       func removeSpinner() {
-           DispatchQueue.main.async {
-            self.vSpinner?.removeFromSuperview()
-            self.vSpinner = nil
-           }
-       }
+//    func showSpinner(onView: UIView) {
+//           let spinnerView = UIView.init(frame: onView.bounds)
+//            let ai = UIActivityIndicatorView.init(style: .UIActivityIndicatorView.Style.large)
+//           ai.startAnimating()
+//           ai.center = spinnerView.center
+//
+//           DispatchQueue.main.async {
+//               spinnerView.addSubview(ai)
+//               onView.addSubview(spinnerView)
+//           }
+//
+//           vSpinner = spinnerView
+//       }
+//
+//       func removeSpinner() {
+//           DispatchQueue.main.async {
+//            self.vSpinner?.removeFromSuperview()
+//            self.vSpinner = nil
+//           }
+//       }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         controller.dismiss(animated: true, completion: nil)
