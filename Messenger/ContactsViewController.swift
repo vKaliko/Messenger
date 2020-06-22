@@ -78,9 +78,9 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
                                 }
                             }
                             else {
-                                print("No phone number found")
+                                //print("No phone number found")
                             }
-                            print(filteredContacts)
+                            //print(filteredContacts)
                         })
                     }
                     catch let err {
