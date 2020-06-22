@@ -132,7 +132,7 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
             composeVC.messageComposeDelegate = self
                 
             composeVC.recipients = selected
-            composeVC.body = "Hey, I am really enjoying using Messenger++ for chatting. Join me! You can download it here: https://google.com"
+            composeVC.body = "Hey, I am really enjoying using Messenger++ for chatting. Join me! You can download it here: https://apps.apple.com/app/id1516976659"
                 
             self.present(composeVC, animated: true, completion: nil)
             
