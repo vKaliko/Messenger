@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wOV-Pl-MhG">
-                                <rect key="frame" x="0.0" y="88" width="414" height="662"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="651"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MessageCell" id="TAh-o2-TIT" customClass="MessageCell" customModule="Messenger" customModuleProvider="target">
@@ -131,21 +131,22 @@
                                     <outlet property="delegate" destination="abT-Pw-qHS" id="a0U-zf-7b4"/>
                                 </connections>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0kb-fU-uBm" userLabel="sendStack">
-                                <rect key="frame" x="20" y="765" width="374" height="33"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0kb-fU-uBm" userLabel="sendStack">
+                                <rect key="frame" x="20" y="754" width="374" height="44"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsVerticalScrollIndicator="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="uzr-Gd-xWF">
-                                        <rect key="frame" x="0.0" y="0.0" width="324" height="33"/>
+                                        <rect key="frame" x="0.0" y="5.6666666666666288" width="310" height="33"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqz-S8-0Zv">
-                                        <rect key="frame" x="344" y="3" width="30" height="30"/>
+                                        <rect key="frame" x="330" y="0.0" width="44" height="44"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Gn8-7d-CeW"/>
-                                            <constraint firstAttribute="width" constant="30" id="OY8-6W-eAo"/>
+                                            <constraint firstAttribute="height" constant="44" id="Gn8-7d-CeW"/>
+                                            <constraint firstAttribute="width" constant="44" id="OY8-6W-eAo"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <state key="normal" image="arrow.up.circle.fill" catalog="system"/>
                                         <connections>
                                             <action selector="send" destination="abT-Pw-qHS" eventType="touchUpInside" id="gkh-FW-66t"/>
@@ -384,23 +385,23 @@
             </objects>
             <point key="canvasLocation" x="528" y="80"/>
         </scene>
-        <!--Contacts-->
+        <!--InviteContacts-->
         <scene sceneID="8JG-MN-TyA">
             <objects>
-                <tableViewController id="RE6-FY-Khg" customClass="ContactsViewController" customModule="Messenger" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="RE6-FY-Khg" userLabel="InviteContacts" customClass="InviteContactsViewController" customModule="Messenger" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Syp-hB-aNT" userLabel="Table View">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactCell" id="oHI-6q-aMz" customClass="ContactCell" customModule="Messenger" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="InviteContactCell" id="oHI-6q-aMz" userLabel="Invite Contact Cell" customClass="InviteContactCell" customModule="Messenger">
                                 <rect key="frame" x="0.0" y="28" width="414" height="40.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oHI-6q-aMz" id="dF0-Ea-hEN">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="40.333332061767578"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpX-dc-qKH">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpX-dc-qKH" userLabel="Invite Contact Name Label">
                                             <rect key="frame" x="20" y="4.9999999999999982" width="374" height="30.333333333333329"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="42" id="VWW-6j-j5I"/>
@@ -421,7 +422,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="contactNameLabel" destination="fpX-dc-qKH" id="gYe-a0-A54"/>
+                                    <outlet property="inviteContactNameLabel" destination="fpX-dc-qKH" id="yzr-dH-C77"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -430,7 +431,7 @@
                             <outlet property="delegate" destination="RE6-FY-Khg" id="PyG-f3-yya"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Contacts" id="yVv-35-xAI">
+                    <navigationItem key="navigationItem" title="Contacts" id="yVv-35-xAI" userLabel="InviteContacts">
                         <barButtonItem key="rightBarButtonItem" title="Invite" id="DsG-qq-mMj">
                             <connections>
                                 <action selector="InviteButton:" destination="RE6-FY-Khg" id="jqQ-aJ-u1N"/>
@@ -440,7 +441,62 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qxn-Ad-jzH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="527.536231884058" y="-640.17857142857144"/>
+            <point key="canvasLocation" x="1325" y="-640"/>
+        </scene>
+        <!--Contacts-->
+        <scene sceneID="vGQ-sa-hYA">
+            <objects>
+                <tableViewController id="4eI-Z4-DJO" userLabel="Contacts" customClass="ContactsViewController" customModule="Messenger" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="41L-WM-bEZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ContactCell" rowHeight="72" id="tI2-33-faA" userLabel="Contact Name Cell" customClass="ContactCell" customModule="Messenger">
+                                <rect key="frame" x="0.0" y="28" width="414" height="72"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tI2-33-faA" id="fjs-eF-bVb">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Frn-tT-goG" userLabel="Contact Name Label">
+                                            <rect key="frame" x="20" y="5" width="374" height="62"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="oYc-Bv-iJw"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Frn-tT-goG" firstAttribute="leading" secondItem="fjs-eF-bVb" secondAttribute="leading" constant="20" id="8PR-o8-DcV"/>
+                                        <constraint firstAttribute="bottom" secondItem="Frn-tT-goG" secondAttribute="bottom" constant="5" id="C6d-cb-xdh"/>
+                                        <constraint firstAttribute="trailing" secondItem="Frn-tT-goG" secondAttribute="trailing" constant="20" id="qHm-bR-WPS"/>
+                                        <constraint firstItem="Frn-tT-goG" firstAttribute="top" secondItem="fjs-eF-bVb" secondAttribute="top" constant="5" id="wbK-KC-3aa"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="contactNameLabel" destination="Frn-tT-goG" id="Gkh-ol-ya9"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4eI-Z4-DJO" id="171-Vh-rvs"/>
+                            <outlet property="delegate" destination="4eI-Z4-DJO" id="j2a-ik-MqS"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="kuC-Pd-HWl">
+                        <barButtonItem key="rightBarButtonItem" title="Invite Contacts" id="OXV-NL-iep">
+                            <connections>
+                                <segue destination="RE6-FY-Khg" kind="show" id="FS9-5v-8cm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bw4-OD-gif" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="556.52173913043487" y="-640.17857142857144"/>
         </scene>
         <!--Contacts-->
         <scene sceneID="cdx-Rh-pWe">
@@ -452,7 +508,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="RE6-FY-Khg" kind="relationship" relationship="rootViewController" id="h0y-TV-azL"/>
+                        <segue destination="4eI-Z4-DJO" kind="relationship" relationship="rootViewController" id="7nh-Ra-Cj3"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MbK-Dq-sv9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

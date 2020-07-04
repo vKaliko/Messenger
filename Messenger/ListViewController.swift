@@ -150,8 +150,8 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
         chatVC.chat = chats[row]
     }
     @IBAction func addChat(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "New Chat", message: nil, preferredStyle: .alert)
         
+        let alert = UIAlertController(title: "New Chat", message: nil, preferredStyle: .alert)
         alert.addTextField()
         let submitAction = UIAlertAction(title: "Add", style: .default) { [unowned alert] _ in
             guard let title = alert.textFields![0].text, title.count > 0 else {
@@ -168,8 +168,6 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                     chat.id = ref!.documentID
                 }
             }
-
-            // do something interesting with "answer" here
         }
         alert.addAction(submitAction)
 

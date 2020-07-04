@@ -2,28 +2,24 @@
 //  ContactsViewController.swift
 //  Messenger
 //
-//  Created by Vanya Kaliko on 01.06.2020.
+//  Created by Vanya Kaliko on 30.06.2020.
 //  Copyright © 2020 Obsessive Coders, Inc. All rights reserved.
 //
 
 import UIKit
 import ContactsUI
-import MessageUI
 
-class ContactsViewController: UITableViewController, MFMessageComposeViewControllerDelegate {
-    
-    var vSpinner: UIView?
+class ContactsViewController: UITableViewController {
+    var allContacts = [CNContact]()
     var contacts = [CNContact]()
     var selectedArr = [String]()
     var contactsPhoneNumbers = [String]()
+    var inviteContactsPhoneNumbers = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchContacts()
-        self.tableView.isEditing = true
-        self.tableView.allowsMultipleSelectionDuringEditing = true
     }
-    
     
     private func fetchContacts() {
         let store = CNContactStore()
@@ -31,25 +27,6 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
             if let err = err {
                 print("Error aquired", err)
             }
-    //        if granted == true {
-    //            print("Access granted")
-    //
-    //                let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey]
-    //                let predicate = CNContact.predicateForContacts(withIdentifiers: [CNContactPhoneNumbersKey])
-    //                do {
-    //                  let contacts = try store.unifiedContactsMatchingPredicate(
-    //                    predicate, keysToFetch: keys as [CNContactDescriptor])
-    //
-    //                  contacts
-    //
-    //                }
-    //                catch let err {
-    //                  print(err)
-    //                }
-    //        store.requestAccess(for: .contacts) { (granted, err) in
-    //            if let err = err {
-    //                print("Error aquired", err)
-    //            }
             if granted == true {
                 print("Access granted")
                 DispatchQueue.global().async { [weak self] in
@@ -58,13 +35,17 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
                     }
                     var filteredContacts = [CNContact]()
                     var filteredPhoneNumbers = [String]()
+                    var filteredAllContacts = [CNContact]()
+                    var filteredInviteContactsPhoneNumbers = [String]()
                     do {
                         let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey]
                         let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+                        request.sortOrder = CNContactSortOrder.userDefault
                         try store.enumerateContacts(with: request, usingBlock: { (contact, stopPointerIfYouWantToStopEnumerating) in
                             if let _ = contact.phoneNumbers.first?.value.stringValue {
                                 var found = false
                                 for profile in Profile.allProfiles {
+                                    filteredAllContacts.append(contact)
                                     if let contactEmail = contact.emailAddresses.first?.value {
                                         if contactEmail as String == profile.email {
                                             found = true
@@ -72,9 +53,12 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
                                         }
                                     }
                                 }
-                                if !found {
+                                if found {
                                     filteredContacts.append(contact)
                                     filteredPhoneNumbers.append((contact.phoneNumbers.first?.value.stringValue)!)
+                                }
+                                else {
+                                    filteredInviteContactsPhoneNumbers.append((contact.phoneNumbers.first?.value.stringValue)!)
                                 }
                             }
                             else {
@@ -89,6 +73,8 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
                     DispatchQueue.main.async {
                         self.contacts = filteredContacts
                         self.contactsPhoneNumbers = filteredPhoneNumbers
+                        self.allContacts = filteredAllContacts
+                        self.inviteContactsPhoneNumbers = filteredInviteContactsPhoneNumbers
                         self.tableView.reloadData()
                     }
                 }
@@ -98,16 +84,18 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
             }
         }
     }
-    //MARK: - UITableViewDelegate
+
+    // MARK: - Table view data source
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
         return contacts.count
     }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let contact = contacts[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
@@ -118,53 +106,9 @@ class ContactsViewController: UITableViewController, MFMessageComposeViewControl
         return cell
     }
     
-    @IBAction func InviteButton(_ sender: Any) {
-        var selected = [String]()
-        if let arr = tableView.indexPathsForSelectedRows {
-            for i in arr {
-                selected.append(contactsPhoneNumbers[i.row])
-            }
-            
-            if !MFMessageComposeViewController.canSendText() {
-                print("SMS services are not available")
-            }
-            let composeVC = MFMessageComposeViewController()
-            composeVC.messageComposeDelegate = self
-                
-            composeVC.recipients = selected
-            composeVC.body = "Hey, I am really enjoying using Messenger++ for chatting. Join me! You can download it here: https://apps.apple.com/app/id1516976659"
-                
-            self.present(composeVC, animated: true, completion: nil)
-            
-        }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let inviteVC = segue.destination as! InviteContactsViewController
+        inviteVC.contacts = Array(Set(allContacts).symmetricDifference(Set(contacts)))
+        inviteVC.contactsPhoneNumbers = inviteContactsPhoneNumbers
     }
-    
-//    func showSpinner(onView: UIView) {
-//           let spinnerView = UIView.init(frame: onView.bounds)
-//            let ai = UIActivityIndicatorView.init(style: .UIActivityIndicatorView.Style.large)
-//           ai.startAnimating()
-//           ai.center = spinnerView.center
-//
-//           DispatchQueue.main.async {
-//               spinnerView.addSubview(ai)
-//               onView.addSubview(spinnerView)
-//           }
-//
-//           vSpinner = spinnerView
-//       }
-//
-//       func removeSpinner() {
-//           DispatchQueue.main.async {
-//            self.vSpinner?.removeFromSuperview()
-//            self.vSpinner = nil
-//           }
-//       }
-    
-    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        controller.dismiss(animated: true, completion: nil)
-    }
-    
 }
-
-
-

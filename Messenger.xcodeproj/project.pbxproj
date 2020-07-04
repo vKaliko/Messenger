@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0BFEC0A48E630240058D97DC /* Pods_Messenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E49083955AB56E35B7B75C /* Pods_Messenger.framework */; };
-		103173BA2484CF9A0009A893 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103173B92484CF9A0009A893 /* ContactsViewController.swift */; };
-		103173BC24876DB20009A893 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103173BB24876DB20009A893 /* ContactCell.swift */; };
+		103173BA2484CF9A0009A893 /* InviteContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103173B92484CF9A0009A893 /* InviteContactsViewController.swift */; };
+		103173BC24876DB20009A893 /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103173BB24876DB20009A893 /* ContactsCell.swift */; };
 		105F88BD240D7C86005AA9F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105F88BC240D7C86005AA9F4 /* AppDelegate.swift */; };
 		105F88BF240D7C86005AA9F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105F88BE240D7C86005AA9F4 /* SceneDelegate.swift */; };
 		105F88C6240D7C86005AA9F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 105F88C4240D7C86005AA9F4 /* Main.storyboard */; };
@@ -17,6 +17,7 @@
 		105F88CB240D7C89005AA9F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 105F88C9240D7C89005AA9F4 /* LaunchScreen.storyboard */; };
 		105F88D3240D7D73005AA9F4 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 105F88D2240D7D73005AA9F4 /* Podfile */; };
 		105F88D5240EAFCE005AA9F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 105F88D4240EAFCE005AA9F4 /* GoogleService-Info.plist */; };
+		10782EFD24AB917D0078D67B /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10782EFC24AB917D0078D67B /* ContactsViewController.swift */; };
 		1090761B2411632A0016CB98 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1090761A2411632A0016CB98 /* ChatViewController.swift */; };
 		10B7975D243AF8B500476055 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B7975C243AF8B500476055 /* Extensions.swift */; };
 		10E4D3D324330701007CB0D9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E4D3D224330701007CB0D9 /* ProfileViewController.swift */; };
@@ -27,8 +28,8 @@
 
 /* Begin PBXFileReference section */
 		04E49083955AB56E35B7B75C /* Pods_Messenger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messenger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		103173B92484CF9A0009A893 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
-		103173BB24876DB20009A893 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		103173B92484CF9A0009A893 /* InviteContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteContactsViewController.swift; sourceTree = "<group>"; };
+		103173BB24876DB20009A893 /* ContactsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCell.swift; sourceTree = "<group>"; };
 		105F88B9240D7C86005AA9F4 /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		105F88BC240D7C86005AA9F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		105F88BE240D7C86005AA9F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +39,7 @@
 		105F88CC240D7C89005AA9F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		105F88D2240D7D73005AA9F4 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		105F88D4240EAFCE005AA9F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		10782EFC24AB917D0078D67B /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		1090761A2411632A0016CB98 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		10B7975C243AF8B500476055 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		10CA18C1244AD50800FF3674 /* Messenger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Messenger.entitlements; sourceTree = "<group>"; };
@@ -96,11 +98,12 @@
 				105F88BE240D7C86005AA9F4 /* SceneDelegate.swift */,
 				DBAF4FBA24155F8A00CF7562 /* ListViewController.swift */,
 				1090761A2411632A0016CB98 /* ChatViewController.swift */,
-				103173B92484CF9A0009A893 /* ContactsViewController.swift */,
+				10782EFC24AB917D0078D67B /* ContactsViewController.swift */,
+				103173B92484CF9A0009A893 /* InviteContactsViewController.swift */,
 				10E4D3D224330701007CB0D9 /* ProfileViewController.swift */,
 				DBAF4FBC241560D800CF7562 /* Chat.swift */,
 				DBAF4FB82415508B00CF7562 /* MessageCell.swift */,
-				103173BB24876DB20009A893 /* ContactCell.swift */,
+				103173BB24876DB20009A893 /* ContactsCell.swift */,
 				10B7975C243AF8B500476055 /* Extensions.swift */,
 				105F88C4240D7C86005AA9F4 /* Main.storyboard */,
 				105F88C7240D7C89005AA9F4 /* Assets.xcassets */,
@@ -255,13 +258,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				103173BC24876DB20009A893 /* ContactCell.swift in Sources */,
+				103173BC24876DB20009A893 /* ContactsCell.swift in Sources */,
+				10782EFD24AB917D0078D67B /* ContactsViewController.swift in Sources */,
 				105F88BD240D7C86005AA9F4 /* AppDelegate.swift in Sources */,
 				DBAF4FBD241560D800CF7562 /* Chat.swift in Sources */,
 				DBAF4FB92415508B00CF7562 /* MessageCell.swift in Sources */,
 				10B7975D243AF8B500476055 /* Extensions.swift in Sources */,
 				1090761B2411632A0016CB98 /* ChatViewController.swift in Sources */,
-				103173BA2484CF9A0009A893 /* ContactsViewController.swift in Sources */,
+				103173BA2484CF9A0009A893 /* InviteContactsViewController.swift in Sources */,
 				10E4D3D324330701007CB0D9 /* ProfileViewController.swift in Sources */,
 				DBAF4FBB24155F8A00CF7562 /* ListViewController.swift in Sources */,
 				105F88BF240D7C86005AA9F4 /* SceneDelegate.swift in Sources */,

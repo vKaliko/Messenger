@@ -20,7 +20,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     
     let db = Firestore.firestore()
     var imagePicker = UIImagePickerController()
-    var profile:Profile!
+    var profile: Profile!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,11 +120,13 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
                 if let dict = document.data() {
                     self.profile = Profile(dict: dict, id: uid)
                     self.textField.text = self.profile.displayName
-                    if let url = self.profile.photoUrl {
-                        let imageUrl = URL(string: url)!
-                        let imageData = try! Data(contentsOf: imageUrl)
-                        let image = UIImage(data: imageData)
-                        self.profilePhotoImageView.image = image
+                    if let urlString = self.profile.photoUrl {
+                        let url = URL(string: urlString)!
+                        let data = try? Data(contentsOf: url)
+                        if let imageData = data {
+                            let image = UIImage(data: imageData)
+                            self.profilePhotoImageView.image = image
+                        }
                     }
                 }
             }

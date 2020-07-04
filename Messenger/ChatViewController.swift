@@ -29,7 +29,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         textView.clipsToBounds = true
         textView.layer.borderColor = UIColor.lightGray.cgColor
         textView.layer.borderWidth = 0.5
-
+        let config = UIImage.SymbolConfiguration(textStyle: .title1)
+        let arrowUp = UIImage(systemName: "arrow.up.circle.fill", withConfiguration: config)
+        sendButton.setImage(arrowUp, for: .normal)
+    
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
