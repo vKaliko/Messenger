@@ -62,9 +62,9 @@ class ContactsViewController: UITableViewController {
                                 }
                             }
                             else {
-                                print("No phone number found")
+                                //print("No phone number found")
                             }
-                            print(filteredContacts)
+                            //print(filteredContacts)
                         })
                     }
                     catch let err {
