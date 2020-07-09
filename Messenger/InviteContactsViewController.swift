@@ -12,7 +12,6 @@ import MessageUI
 
 class InviteContactsViewController: UITableViewController, MFMessageComposeViewControllerDelegate {
     
-    var vSpinner: UIView?
     var contacts = [CNContact]()
     var selectedArr = [String]()
     var contactsPhoneNumbers = [String]()
@@ -88,27 +87,6 @@ class InviteContactsViewController: UITableViewController, MFMessageComposeViewC
             
         }
     }
-    
-//    func showSpinner(onView: UIView) {
-//           let spinnerView = UIView.init(frame: onView.bounds)
-//            let ai = UIActivityIndicatorView.init(style: .UIActivityIndicatorView.Style.large)
-//           ai.startAnimating()
-//           ai.center = spinnerView.center
-//
-//           DispatchQueue.main.async {
-//               spinnerView.addSubview(ai)
-//               onView.addSubview(spinnerView)
-//           }
-//
-//           vSpinner = spinnerView
-//       }
-//
-//       func removeSpinner() {
-//           DispatchQueue.main.async {
-//            self.vSpinner?.removeFromSuperview()
-//            self.vSpinner = nil
-//           }
-//       }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         controller.dismiss(animated: true, completion: nil)

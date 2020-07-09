@@ -15,3 +15,7 @@ class ContactCell: UITableViewCell {
 class InviteContactCell: UITableViewCell {
     @IBOutlet weak var inviteContactNameLabel: UILabel!
 }
+
+class AddChatCell: UITableViewCell {
+    @IBOutlet weak var addChatNameLabel: UILabel!
+}

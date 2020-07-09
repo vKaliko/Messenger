@@ -40,7 +40,6 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
         
         db.collection("profiles").addSnapshotListener { (querySnapshot, err) in
             if let err = err {
-                print("Error fetching: \(err)")
             }
             else {
                 var newProfiles = [Profile]()
@@ -63,7 +62,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                 Profile.allProfiles = newProfiles
             }
         }
-        db.collection("chats").order(by: "title").addSnapshotListener { (querySnapshot, err) in
+        db.collection("chatswuids").order(by: "title").addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Error fetching: \(err)")
             } else {
@@ -110,17 +109,17 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
     }
     */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
+
+//
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            // Delete the row from the data source
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//        } else if editingStyle == .insert {
+//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//        }
+//    }
+
 
     /*
     // Override to support rearranging the table view.
@@ -142,57 +141,27 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let chatVC = segue.destination as! ChatViewController
-        let cell = sender as! UITableViewCell
-        guard let row = tableView.indexPath(for: cell)?.row else {
-            return
-        }
-        chatVC.chat = chats[row]
-    }
-    @IBAction func addChat(_ sender: UIBarButtonItem) {
-        
-        let alert = UIAlertController(title: "New Chat", message: nil, preferredStyle: .alert)
-        alert.addTextField()
-        let submitAction = UIAlertAction(title: "Add", style: .default) { [unowned alert] _ in
-            guard let title = alert.textFields![0].text, title.count > 0 else {
+        if segue.identifier == "ShowChatSegue" {
+            let chatVC = segue.destination as! ChatViewController
+            let cell = sender as! UITableViewCell
+            guard let row = tableView.indexPath(for: cell)?.row else {
                 return
             }
-            
-            let chat = Chat(title, id: "")
-            var ref: DocumentReference? = nil
-            ref = self.db.collection("chats").addDocument(data: chat.toDict()) { err in
-                if let err = err {
-                    print("Error adding document: \(err)")
-                }
-                else {
-                    chat.id = ref!.documentID
-                }
-            }
+            chatVC.chat = chats[row]
         }
-        alert.addAction(submitAction)
-
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Default action"), style: .default, handler: { _ in
-        NSLog("The \"OK\" alert occured.")
-        }))
-        
-        self.present(alert, animated: true, completion: nil)
-        
-        
-        
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let chatId = chats[indexPath.row].id
-            db.collection("chats").document(chatId).delete() { err in
+            db.collection("chatswuids").document(chatId).delete() { err in
                 if let err = err {
                     print("Error removing document: \(err)")
-                } else {
+                }
+                else {
                     print("Document successfully removed!")
                 }
             }
         }
     }
-    
-
 }

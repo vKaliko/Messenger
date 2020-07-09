@@ -19,6 +19,7 @@
 		105F88D5240EAFCE005AA9F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 105F88D4240EAFCE005AA9F4 /* GoogleService-Info.plist */; };
 		10782EFD24AB917D0078D67B /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10782EFC24AB917D0078D67B /* ContactsViewController.swift */; };
 		1090761B2411632A0016CB98 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1090761A2411632A0016CB98 /* ChatViewController.swift */; };
+		1095C1A824B3956F005B6D89 /* AddChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1095C1A724B3956F005B6D89 /* AddChatViewController.swift */; };
 		10B7975D243AF8B500476055 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B7975C243AF8B500476055 /* Extensions.swift */; };
 		10E4D3D324330701007CB0D9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E4D3D224330701007CB0D9 /* ProfileViewController.swift */; };
 		DBAF4FB92415508B00CF7562 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAF4FB82415508B00CF7562 /* MessageCell.swift */; };
@@ -41,6 +42,7 @@
 		105F88D4240EAFCE005AA9F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10782EFC24AB917D0078D67B /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		1090761A2411632A0016CB98 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		1095C1A724B3956F005B6D89 /* AddChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChatViewController.swift; sourceTree = "<group>"; };
 		10B7975C243AF8B500476055 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		10CA18C1244AD50800FF3674 /* Messenger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Messenger.entitlements; sourceTree = "<group>"; };
 		10E4D3D224330701007CB0D9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				105F88BE240D7C86005AA9F4 /* SceneDelegate.swift */,
 				DBAF4FBA24155F8A00CF7562 /* ListViewController.swift */,
 				1090761A2411632A0016CB98 /* ChatViewController.swift */,
+				1095C1A724B3956F005B6D89 /* AddChatViewController.swift */,
 				10782EFC24AB917D0078D67B /* ContactsViewController.swift */,
 				103173B92484CF9A0009A893 /* InviteContactsViewController.swift */,
 				10E4D3D224330701007CB0D9 /* ProfileViewController.swift */,
@@ -268,6 +271,7 @@
 				103173BA2484CF9A0009A893 /* InviteContactsViewController.swift in Sources */,
 				10E4D3D324330701007CB0D9 /* ProfileViewController.swift in Sources */,
 				DBAF4FBB24155F8A00CF7562 /* ListViewController.swift in Sources */,
+				1095C1A824B3956F005B6D89 /* AddChatViewController.swift in Sources */,
 				105F88BF240D7C86005AA9F4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

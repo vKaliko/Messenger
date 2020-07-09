@@ -14,10 +14,12 @@ class Chat: Codable {
     
     var id: String
     var title: String
+    var particip: [String]
     var messages: [Message]
     
     init(dict: [String : Any], id: String) {
         self.id = id
+        self.particip = dict["particip"] as! [String]
         self.title = dict["title"] as! String
         let dicts = dict["messages"] as! [[String : Any]]
         self.messages = [Message]()
@@ -30,7 +32,8 @@ class Chat: Codable {
         }
     }
     
-    init(_ title: String, id: String) {
+    init(_ title: String, id: String, particip: [String]) {
+        self.particip = particip
         self.title = title
         self.id = id
         self.messages = [Message]()
@@ -41,7 +44,7 @@ class Chat: Codable {
         for message in self.messages {
             dicts.append(message.toDict())
         }
-        let dict = ["title" : self.title, "messages" : dicts] as [String : Any]
+        let dict = ["title" : self.title, "particip" : self.particip, "messages" : dicts] as [String : Any]
         return dict
     }
     

@@ -8,6 +8,63 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Add Chat View Controller-->
+        <scene sceneID="FUv-Qv-R7Z">
+            <objects>
+                <tableViewController id="Gpr-Gh-6pc" customClass="AddChatViewController" customModule="Messenger" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xlI-iq-sYw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddChatCell" id="TQY-Fq-7T0" customClass="AddChatCell" customModule="Messenger">
+                                <rect key="frame" x="0.0" y="28" width="414" height="40.333332061767578"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TQY-Fq-7T0" id="CX1-4s-uzU">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="40.333332061767578"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijz-XC-nXf">
+                                            <rect key="frame" x="20" y="4.9999999999999982" width="374" height="30.333333333333329"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="cvW-UM-OW4"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ijz-XC-nXf" firstAttribute="top" secondItem="CX1-4s-uzU" secondAttribute="top" constant="5" id="0bx-AS-Bis"/>
+                                        <constraint firstAttribute="bottom" secondItem="ijz-XC-nXf" secondAttribute="bottom" constant="5" id="B41-Iw-mBC"/>
+                                        <constraint firstAttribute="trailing" secondItem="ijz-XC-nXf" secondAttribute="trailing" constant="20" id="ay9-tz-8nn"/>
+                                        <constraint firstItem="ijz-XC-nXf" firstAttribute="leading" secondItem="CX1-4s-uzU" secondAttribute="leading" constant="20" id="lKc-Of-kSW"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="addChatNameLabel" destination="ijz-XC-nXf" id="Mow-qU-dOk"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Gpr-Gh-6pc" id="EBw-X9-KDR"/>
+                            <outlet property="delegate" destination="Gpr-Gh-6pc" id="ylL-B0-oNl"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="jRk-5J-6Sn">
+                        <barButtonItem key="rightBarButtonItem" title="Create" id="VBR-Db-3Vl">
+                            <connections>
+                                <action selector="CreateChatButton:" destination="Gpr-Gh-6pc" id="0D1-HZ-952"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eoT-ox-LHs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1464" y="80"/>
+        </scene>
         <!--Chat View Controller-->
         <scene sceneID="vDq-CT-NW0">
             <objects>
@@ -181,7 +238,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhS-MB-oE1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1469.5652173913045" y="79.6875"/>
+            <point key="canvasLocation" x="2323" y="80"/>
         </scene>
         <!--Profile-->
         <scene sceneID="FSO-vp-VPh">
@@ -362,7 +419,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="abT-Pw-qHS" kind="show" id="gJd-wU-VCn"/>
+                                    <segue destination="abT-Pw-qHS" kind="show" identifier="ShowChatSegue" id="gJd-wU-VCn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -374,9 +431,10 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Chats" id="Gfx-3B-mIP">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="cZ2-Dp-441"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dXz-9c-B82">
+                        <barButtonItem key="rightBarButtonItem" image="square.and.pencil" catalog="system" id="dXz-9c-B82">
                             <connections>
                                 <action selector="addChat:" destination="uAi-So-SH0" id="X6z-8B-028"/>
+                                <segue destination="Gpr-Gh-6pc" kind="show" id="R5r-iQ-mlH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -431,7 +489,7 @@
                             <outlet property="delegate" destination="RE6-FY-Khg" id="PyG-f3-yya"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Contacts" id="yVv-35-xAI" userLabel="InviteContacts">
+                    <navigationItem key="navigationItem" title="Invite Contacts" id="yVv-35-xAI" userLabel="InviteContacts">
                         <barButtonItem key="rightBarButtonItem" title="Invite" id="DsG-qq-mMj">
                             <connections>
                                 <action selector="InviteButton:" destination="RE6-FY-Khg" id="jqQ-aJ-u1N"/>
@@ -446,7 +504,7 @@
         <!--Contacts-->
         <scene sceneID="vGQ-sa-hYA">
             <objects>
-                <tableViewController id="4eI-Z4-DJO" userLabel="Contacts" customClass="ContactsViewController" customModule="Messenger" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Contacts" id="4eI-Z4-DJO" userLabel="Contacts" customClass="ContactsViewController" customModule="Messenger" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="41L-WM-bEZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -486,7 +544,7 @@
                             <outlet property="delegate" destination="4eI-Z4-DJO" id="j2a-ik-MqS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="kuC-Pd-HWl">
+                    <navigationItem key="navigationItem" title="Contacts" id="kuC-Pd-HWl">
                         <barButtonItem key="rightBarButtonItem" title="Invite Contacts" id="OXV-NL-iep">
                             <connections>
                                 <segue destination="RE6-FY-Khg" kind="show" id="FS9-5v-8cm"/>
@@ -523,6 +581,7 @@
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.crop.square.fill" catalog="system" width="128" height="114"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="square.and.pencil" catalog="system" width="128" height="118"/>
         <image name="testImage" width="341.33334350585938" height="256"/>
     </resources>
 </document>

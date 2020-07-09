@@ -11,7 +11,7 @@ import ContactsUI
 
 class ContactsViewController: UITableViewController {
     var allContacts = [CNContact]()
-    var contacts = [CNContact]()
+    static var contacts = [CNContact]()
     var selectedArr = [String]()
     var contactsPhoneNumbers = [String]()
     var inviteContactsPhoneNumbers = [String]()
@@ -71,7 +71,7 @@ class ContactsViewController: UITableViewController {
                         print("Faild enumerating", err)
                     }
                     DispatchQueue.main.async {
-                        self.contacts = filteredContacts
+                        ContactsViewController.self.contacts = filteredContacts
                         self.contactsPhoneNumbers = filteredPhoneNumbers
                         self.allContacts = filteredAllContacts
                         self.inviteContactsPhoneNumbers = filteredInviteContactsPhoneNumbers
@@ -94,10 +94,10 @@ class ContactsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return contacts.count
+        return ContactsViewController.contacts.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let contact = contacts[indexPath.row]
+        let contact = ContactsViewController.contacts[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
         cell.contactNameLabel.text = contact.givenName + " " + contact.familyName
         if cell.contactNameLabel.text == " " {
@@ -108,7 +108,7 @@ class ContactsViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let inviteVC = segue.destination as! InviteContactsViewController
-        inviteVC.contacts = Array(Set(allContacts).symmetricDifference(Set(contacts)))
+        inviteVC.contacts = Array(Set(allContacts).symmetricDifference(Set(ContactsViewController.contacts)))
         inviteVC.contactsPhoneNumbers = inviteContactsPhoneNumbers
     }
 }
