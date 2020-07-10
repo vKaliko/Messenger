@@ -46,9 +46,6 @@ class AddChatViewController: UITableViewController {
         }
         return cell
     }
-    func tappedBackButton() {
-        self.navigationController!.popViewController(animated: true)
-    }
     @IBAction func CreateChatButton(_ sender: Any) {
         var selected = [String]()
         if let arr = tableView.indexPathsForSelectedRows {
@@ -74,7 +71,7 @@ class AddChatViewController: UITableViewController {
                     chat.id = ref!.documentID
                 }
             }
-            tappedBackButton()
+            self.navigationController!.popViewController(animated: true)
         }
     }
 }

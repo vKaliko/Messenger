@@ -70,7 +70,12 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                 for document in querySnapshot!.documents {
                     let d = document.data()
                     let chat = Chat(dict: d, id: document.documentID)
-                    newChats.append(chat)
+                    for particip in chat.particip {
+                        if particip == Auth.auth().currentUser?.email {
+                            newChats.append(chat)
+                        }
+                    }
+                    
                 }
                 self.chats = newChats
                 self.tableView.reloadData()
