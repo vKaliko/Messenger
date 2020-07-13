@@ -20,6 +20,21 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tabBarController?.tabBar.isHidden = false
+        db.collection("chatswuids").order(by: "title").whereField("particip", arrayContains: String((Auth.auth().currentUser?.email)!)).addSnapshotListener { (querySnapshot, err) in
+            if let err = err {
+                print("Error fetching: \(err)")
+            }
+            else {
+                var newChats = [Chat]()
+                for document in querySnapshot!.documents {
+                    let d = document.data()
+                    let chat = Chat(dict: d, id: document.documentID)
+                    newChats.append(chat)
+                }
+                self.chats = newChats
+                self.tableView.reloadData()
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -62,27 +77,6 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                 Profile.allProfiles = newProfiles
             }
         }
-        db.collection("chatswuids").order(by: "title").addSnapshotListener { (querySnapshot, err) in
-            if let err = err {
-                print("Error fetching: \(err)")
-            } else {
-                var newChats = [Chat]()
-                for document in querySnapshot!.documents {
-                    let d = document.data()
-                    let chat = Chat(dict: d, id: document.documentID)
-                    for particip in chat.particip {
-                        if particip == Auth.auth().currentUser?.email {
-                            newChats.append(chat)
-                        }
-                    }
-                    
-                }
-                self.chats = newChats
-                self.tableView.reloadData()
-            }
-        }
-        
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
