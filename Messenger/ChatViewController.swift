@@ -120,7 +120,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let indexPath = IndexPath(row: chat.messages.count-1, section: 0)
         tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         let db = Firestore.firestore()
-        db.collection("chats").document(chat.id).setData(chat.toDict())
+        db.collection("chatswuids").document(chat.id).setData(chat.toDict())
     }
     
     func textViewDidChange(_ textView: UITextView) {

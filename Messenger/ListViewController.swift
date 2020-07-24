@@ -120,7 +120,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let chatId = chats[indexPath.row].id
-            db.collection("chats").document(chatId).delete() { err in
+            db.collection("chatswuids").document(chatId).delete() { err in
                 if let err = err {
                     print("Error removing document: \(err)")
                 }
