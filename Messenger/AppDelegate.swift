@@ -5,8 +5,6 @@
 //  Created by Vanya Kaliko on 02.03.2020.
 //  Copyright © 2020 Obsessive Coders, Inc. All rights reserved.
 //
-
-import UIKit
 import Firebase
 import FirebaseFirestore
 import FirebaseUI

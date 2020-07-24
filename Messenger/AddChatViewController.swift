@@ -14,7 +14,7 @@ import FirebaseUI
 
 class AddChatViewController: UITableViewController {
     
-    var contacts = ContactsViewController.contacts
+    var contacts = ListViewController.contacts
     var db: Firestore!
     var chat: Chat!
     
@@ -23,6 +23,7 @@ class AddChatViewController: UITableViewController {
         db = Firestore.firestore()
         self.tableView.isEditing = true
         self.tableView.allowsMultipleSelectionDuringEditing = true
+        self.navigationController?.navigationBar.prefersLargeTitles = false
     }
 
     // MARK: - Table view data source
@@ -46,32 +47,48 @@ class AddChatViewController: UITableViewController {
         }
         return cell
     }
-    @IBAction func CreateChatButton(_ sender: Any) {
-        var selected = [String]()
+    @IBAction func CreateButton(_ sender: Any) {
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        var selectedIds = [user.uid]
+        var selectedNames = [String]()
+        var title = ""
         if let arr = tableView.indexPathsForSelectedRows {
             for i in arr {
-                selected.append((contacts[i.row].emailAddresses.first?.value)! as String)
+                for profile in Profile.allProfiles {
+                    if profile.email == contacts[i.row].emailAddresses.first!.value as String {
+                        selectedIds.append(profile.id)
+                        if profile.displayName == nil {
+                            selectedNames.append(profile.email)
+                        }
+                        else {
+                            selectedNames.append(profile.displayName!)
+                        }
+                    }
+                }
             }
-//            let chat = Chat(title, id: "")
-//            var ref: DocumentReference? = nil
-//            ref = self.db.collection("chats").addDocument(data: chat.toDict()) { err in
-//                if let err = err {
-//                    print("Error adding document: \(err)")
-//                }
-//                else {
-//                    chat.id = ref!.documentID
-//                }
-            let chat = Chat("TEST", id: "", particip: selected)
-            var ref: DocumentReference?
-            ref = db.collection("chatswuids").addDocument(data: chat.toDict()) { err in
+            if selectedNames.count == 2 {
+                title = selectedNames[0] + " & " + selectedNames[1]
+            }
+            if selectedNames.count > 2 {
+                title = selectedNames[0] + ", " + selectedNames[1] + " and more"
+            }
+            if selectedNames.count == 1 {
+                title = selectedNames[0]
+            }
+            let chat = Chat(title, id: "", particip: selectedIds)
+            var ref: DocumentReference? = nil
+            ref = self.db.collection("chatswuids").addDocument(data: chat.toDict()) { err in
                 if let err = err {
                     print("Error adding document: \(err)")
                 }
                 else {
                     chat.id = ref!.documentID
+                    
                 }
             }
-            self.navigationController!.popViewController(animated: true)
+            navigationController?.popViewController(animated: true)
         }
     }
 }

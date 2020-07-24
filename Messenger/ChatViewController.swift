@@ -19,10 +19,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var chat: Chat!
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.tabBar.isHidden = true
+        self.navigationController?.navigationBar.prefersLargeTitles = false
         textView.delegate = self
         title = chat.title
         textView.layer.cornerRadius = 7
@@ -128,6 +130,34 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func updateSendButton() {
         sendButton.isEnabled = !textView.text.isEmpty
     }
+    
+    @IBAction func ChatInfoButton(_ sender: Any) {
+        let alert = UIAlertController(title: "Edit Chat Title", message: nil, preferredStyle: .alert)
+        
+        alert.addTextField()
+        alert.textFields![0].text = chat.title
+        let submitAction = UIAlertAction(title: "Add", style: .default) { [unowned alert] _ in
+            guard let title = alert.textFields![0].text, title.count > 0 else {
+                return
+            }
+            self.db.collection("chatswuids").document(self.chat.id).updateData(["title": title]){ err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                }
+            }
+            
+
+            // do something interesting with "answer" here
+        }
+        chat.title = title!
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Default action"), style: .default, handler: { _ in
+        NSLog("The \"OK\" alert occured.")
+        }))
+        alert.addAction(submitAction)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
     
     @objc func keyboardWillChange(notification: Notification) {
         print("Keyboard will show: \(notification.name.rawValue)")

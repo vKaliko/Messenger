@@ -11,7 +11,7 @@
         <!--Add Chat View Controller-->
         <scene sceneID="FUv-Qv-R7Z">
             <objects>
-                <tableViewController id="Gpr-Gh-6pc" customClass="AddChatViewController" customModule="Messenger" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="navigation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gpr-Gh-6pc" customClass="AddChatViewController" customModule="Messenger" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xlI-iq-sYw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -55,7 +55,7 @@
                     <navigationItem key="navigationItem" id="jRk-5J-6Sn">
                         <barButtonItem key="rightBarButtonItem" title="Create" id="VBR-Db-3Vl">
                             <connections>
-                                <action selector="CreateChatButton:" destination="Gpr-Gh-6pc" id="0D1-HZ-952"/>
+                                <action selector="CreateButton:" destination="Gpr-Gh-6pc" id="rGJ-QZ-upy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -63,7 +63,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoT-ox-LHs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1464" y="80"/>
+            <point key="canvasLocation" x="1461" y="80"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="vDq-CT-NW0">
@@ -228,7 +228,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="i4i-yh-5OB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="iCv-YS-V49"/>
+                    <navigationItem key="navigationItem" id="iCv-YS-V49">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="info.circle" catalog="system" id="zfo-H7-I9s">
+                            <connections>
+                                <action selector="ChatInfoButton:" destination="abT-Pw-qHS" id="Phj-hT-gxq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bottomConstraint" destination="lj8-BH-big" id="N8Q-gs-3cJ"/>
                         <outlet property="sendButton" destination="pqz-S8-0Zv" id="PKX-2R-Aeg"/>
@@ -238,7 +244,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhS-MB-oE1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2323" y="80"/>
+            <point key="canvasLocation" x="2417" y="80"/>
         </scene>
         <!--Profile-->
         <scene sceneID="FSO-vp-VPh">
@@ -409,7 +415,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="383" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v7T-0a-JmQ">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v7T-0a-JmQ" userLabel="Title">
                                             <rect key="frame" x="20" y="0.0" width="355" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -433,15 +439,15 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="cZ2-Dp-441"/>
                         <barButtonItem key="rightBarButtonItem" image="square.and.pencil" catalog="system" id="dXz-9c-B82">
                             <connections>
-                                <action selector="addChat:" destination="uAi-So-SH0" id="X6z-8B-028"/>
-                                <segue destination="Gpr-Gh-6pc" kind="show" id="R5r-iQ-mlH"/>
+                                <action selector="CreateChatButton:" destination="uAi-So-SH0" id="i60-Zj-QKK"/>
+                                <segue destination="Gpr-Gh-6pc" kind="show" id="RDW-7E-ykC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4sC-TG-DKq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="528" y="80"/>
+            <point key="canvasLocation" x="527.536231884058" y="79.6875"/>
         </scene>
         <!--InviteContacts-->
         <scene sceneID="8JG-MN-TyA">
@@ -452,7 +458,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="InviteContactCell" id="oHI-6q-aMz" userLabel="Invite Contact Cell" customClass="InviteContactCell" customModule="Messenger">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="oHI-6q-aMz" userLabel="Invite Contact Cell">
                                 <rect key="frame" x="0.0" y="28" width="414" height="40.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oHI-6q-aMz" id="dF0-Ea-hEN">
@@ -479,9 +485,6 @@
                                         <constraint firstItem="fpX-dc-qKH" firstAttribute="top" secondItem="dF0-Ea-hEN" secondAttribute="top" constant="5" id="jlM-DR-V9T"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="inviteContactNameLabel" destination="fpX-dc-qKH" id="yzr-dH-C77"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -547,7 +550,7 @@
                     <navigationItem key="navigationItem" title="Contacts" id="kuC-Pd-HWl">
                         <barButtonItem key="rightBarButtonItem" title="Invite Contacts" id="OXV-NL-iep">
                             <connections>
-                                <segue destination="RE6-FY-Khg" kind="show" id="FS9-5v-8cm"/>
+                                <action selector="addContacts:" destination="4eI-Z4-DJO" id="dcL-i9-tTk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -576,6 +579,7 @@
     </scenes>
     <resources>
         <image name="arrow.up.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="message" catalog="system" width="128" height="113"/>
         <image name="message.fill" catalog="system" width="128" height="113"/>
         <image name="person" catalog="system" width="128" height="117"/>

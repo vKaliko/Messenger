@@ -11,16 +11,27 @@ import FirebaseAuth
 import Firebase
 import FirebaseFirestore
 import FirebaseUI
+import ContactsUI
 
 class ListViewController: UITableViewController, FUIAuthDelegate {
     
     var chats = [Chat]()
     var db: Firestore!
+    static var contacts = [CNContact]()
+    static var allContacts = [CNContact]()
+    static var selectedArr = [String]()
+    static var contactsPhoneNumbers = [String]()
+    static var inviteContactsPhoneNumbers = [String]()
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tabBarController?.tabBar.isHidden = false
-        db.collection("chatswuids").order(by: "title").whereField("particip", arrayContains: String((Auth.auth().currentUser?.email)!)).addSnapshotListener { (querySnapshot, err) in
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        db.collection("chatswuids").order(by: "title").whereField("particip", arrayContains: user.uid).addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Error fetching: \(err)")
             }
@@ -39,8 +50,35 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = editButtonItem
         db = Firestore.firestore()
+        db.collection("profiles").addSnapshotListener { (querySnapshot, err) in
+            if let err = err {
+                print(err)
+            }
+            else {
+                var newProfiles = [Profile]()
+                for document in querySnapshot!.documents {
+                    let d = document.data()
+                    let p = Profile(dict: d, id: document.documentID)
+                    if let photoUrl = p.photoUrl, let url = URL(string: photoUrl) {
+                       URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                           if let error = error {
+                               print(error)
+                               return
+                           }
+                           DispatchQueue.main.async {
+                                p.photo = UIImage(data: data!)
+                           }
+                       }).resume()
+                    }
+                    newProfiles.append(p)
+                }
+                Profile.allProfiles = newProfiles
+                self.fetchContacts()
+            }
+            
+        }
+        navigationItem.leftBarButtonItem = editButtonItem
         guard let authUI = FUIAuth.defaultAuthUI() else {
             return
         }
@@ -50,35 +88,13 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
             print("listvc. Login change listener user = \(user)")
             if auth.currentUser == nil {
                 self.present(authUI.authViewController(), animated: true, completion: nil)
+                FUIAuth.defaultAuthUI()?.shouldHideCancelButton = true
             }
         }
         
-        db.collection("profiles").addSnapshotListener { (querySnapshot, err) in
-            if let err = err {
-            }
-            else {
-                var newProfiles = [Profile]()
-                for document in querySnapshot!.documents {
-                    let d = document.data()
-                    let p = Profile(dict: d, id: document.documentID)
-                    if let photoUrl = p.photoUrl, let url = URL(string: photoUrl) {
-                       URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-                           if error != nil {
-                               print(error!)
-                               return
-                           }
-                           DispatchQueue.main.async {
-                               p.photo = UIImage(data: data!)
-                           }
-                       }).resume()
-                    }
-                    newProfiles.append(p)
-                }
-                Profile.allProfiles = newProfiles
-            }
-        }
+        
         // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        // self.clearsSelectionOnViewWillAppear = falsevc
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
@@ -101,6 +117,20 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let chatId = chats[indexPath.row].id
+            db.collection("chats").document(chatId).delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                }
+                else {
+                    print("Document successfully removed!")
+                }
+            }
+        }
+    }
+    
     /*   // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
@@ -113,7 +143,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
 //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 //        if editingStyle == .delete {
 //            // Delete the row from the data source
-//            tableView.deleteRows(at: [indexPath], with: .fade)
+//
 //        } else if editingStyle == .insert {
 //            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
 //        }
@@ -139,6 +169,71 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    private func fetchContacts() {
+        let store = CNContactStore()
+        store.requestAccess(for: .contacts) { (granted, err) in
+            if let err = err {
+                print("Error aquired", err)
+            }
+            if granted == true {
+                print("Access granted")
+                DispatchQueue.global().async { [weak self] in
+                    guard let self = self else {
+                      return
+                    }
+                    var filteredContacts = [CNContact]()
+                    var filteredPhoneNumbers = [String]()
+                    var filteredAllContacts = [CNContact]()
+                    var filteredInviteContactsPhoneNumbers = [String]()
+                    do {
+                        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey]
+                        let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+                        request.sortOrder = CNContactSortOrder.userDefault
+                        try store.enumerateContacts(with: request, usingBlock: { (contact, stopPointerIfYouWantToStopEnumerating) in
+                            if let _ = contact.phoneNumbers.first?.value.stringValue {
+                                var found = false
+                                for profile in Profile.allProfiles {
+                                    filteredAllContacts.append(contact)
+                                    if let contactEmail = contact.emailAddresses.first?.value {
+                                        if contactEmail as String == profile.email {
+                                            found = true
+                                            break
+                                        }
+                                    }
+                                }
+                                if found {
+                                    filteredContacts.append(contact)
+                                    filteredPhoneNumbers.append((contact.phoneNumbers.first?.value.stringValue)!)
+                                }
+                                else {
+                                    filteredInviteContactsPhoneNumbers.append((contact.phoneNumbers.first?.value.stringValue)!)
+                                }
+                            }
+                            else {
+                                //print("No phone number found")
+                            }
+                            //print(filteredContacts)
+                        })
+                    }
+                    catch let err {
+                        print("Faild enumerating", err)
+                    }
+                    DispatchQueue.main.async {
+                        ListViewController.self.contacts = filteredContacts
+                        ListViewController.self.contactsPhoneNumbers = filteredPhoneNumbers
+                        ListViewController.self.allContacts = filteredAllContacts
+                        ListViewController.self.inviteContactsPhoneNumbers = filteredInviteContactsPhoneNumbers
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+            else {
+                print("Access denied")
+            }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowChatSegue" {
             let chatVC = segue.destination as! ChatViewController
@@ -150,17 +245,5 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
         }
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let chatId = chats[indexPath.row].id
-            db.collection("chatswuids").document(chatId).delete() { err in
-                if let err = err {
-                    print("Error removing document: \(err)")
-                }
-                else {
-                    print("Document successfully removed!")
-                }
-            }
-        }
-    }
+    
 }
