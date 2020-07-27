@@ -26,6 +26,5 @@ class MessageCell: UITableViewCell {
             twoLettersLabel!.layer.cornerRadius = twoLettersLabel!.bounds.size.width / 2
             twoLettersLabel!.layer.masksToBounds = true
         }
-        
     }
 }

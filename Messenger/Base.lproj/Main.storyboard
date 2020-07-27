@@ -63,7 +63,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoT-ox-LHs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1461" y="80"/>
+            <point key="canvasLocation" x="1501" y="80"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="vDq-CT-NW0">
@@ -126,23 +126,23 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6wh-hW-PIC" userLabel="messageStack">
                                                     <rect key="frame" x="20" y="5" width="331.33333333333331" height="220.66666666666666"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLe-XQ-2xy" userLabel="twoLettersLabel">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwI-8h-ubA" userLabel="twoLettersLabel">
                                                             <rect key="frame" x="0.0" y="190.66666666666666" width="30" height="30"/>
                                                             <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="30" id="6d6-z9-uRc"/>
-                                                                <constraint firstAttribute="height" constant="30" id="pcg-bD-cGO"/>
+                                                                <constraint firstAttribute="width" constant="30" id="NtH-xy-rA3"/>
+                                                                <constraint firstAttribute="height" constant="30" id="xYR-M8-N3G"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pNQ-0T-Q6h" userLabel="profileImageView">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xst-iw-h4V" userLabel="profileImageView">
                                                             <rect key="frame" x="38" y="192.33333333333331" width="30" height="27"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="30" id="Tzu-i8-8bx"/>
-                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="pMQ-N3-ksi"/>
-                                                                <constraint firstAttribute="height" constant="30" id="rXQ-7m-arY"/>
+                                                                <constraint firstAttribute="height" constant="30" id="3PT-cK-or8"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="7tx-qF-GOx"/>
+                                                                <constraint firstAttribute="width" constant="30" id="GWr-lC-Doj"/>
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Gbg-UT-xaV" userLabel="textStack">
@@ -176,8 +176,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="messageLabel" destination="pWj-XT-VYP" id="GaI-F1-O5e"/>
-                                            <outlet property="profileImageView" destination="pNQ-0T-Q6h" id="QPG-u2-f6Q"/>
-                                            <outlet property="twoLettersLabel" destination="rLe-XQ-2xy" id="ly1-K4-oX1"/>
                                             <outlet property="usernameLabel" destination="TPY-fe-hsZ" id="52b-oe-x6F"/>
                                         </connections>
                                     </tableViewCell>
@@ -408,24 +406,55 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChatCell" textLabel="v7T-0a-JmQ" style="IBUITableViewCellStyleDefault" id="pb8-Z1-2cR">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatsCell" rowHeight="50" id="9Im-TU-BR7" customClass="ChatsCell" customModule="Messenger" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pb8-Z1-2cR" id="UGa-b4-TWi">
-                                    <rect key="frame" x="0.0" y="0.0" width="383" height="43.666667938232422"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Im-TU-BR7" id="7CM-Xu-HRv">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v7T-0a-JmQ" userLabel="Title">
-                                            <rect key="frame" x="20" y="0.0" width="355" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="0Kw-Mt-BFX" userLabel="chatStackVIew">
+                                            <rect key="frame" x="20" y="5" width="374" height="40"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pNQ-0T-Q6h" userLabel="chatImageView">
+                                                    <rect key="frame" x="0.0" y="1.6666666666666643" width="30" height="37"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="Tzu-i8-8bx"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="pMQ-N3-ksi"/>
+                                                        <constraint firstAttribute="height" constant="30" id="rXQ-7m-arY"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLe-XQ-2xy" userLabel="chatTwoLetterLabel">
+                                                    <rect key="frame" x="60" y="0.0" width="30" height="40"/>
+                                                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="6d6-z9-uRc"/>
+                                                        <constraint firstAttribute="height" constant="30" id="pcg-bD-cGO"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ChatName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMF-WU-iZJ" userLabel="Title">
+                                                    <rect key="frame" x="120" y="0.0" width="254" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="0Kw-Mt-BFX" firstAttribute="leading" secondItem="7CM-Xu-HRv" secondAttribute="leading" constant="20" id="J59-GU-FdG"/>
+                                        <constraint firstAttribute="trailing" secondItem="0Kw-Mt-BFX" secondAttribute="trailing" constant="20" id="K4V-aV-UhD"/>
+                                        <constraint firstItem="0Kw-Mt-BFX" firstAttribute="top" secondItem="7CM-Xu-HRv" secondAttribute="top" constant="5" id="hHb-69-7Pc"/>
+                                        <constraint firstAttribute="bottom" secondItem="0Kw-Mt-BFX" secondAttribute="bottom" constant="5" id="zOy-f5-IHr"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="abT-Pw-qHS" kind="show" identifier="ShowChatSegue" id="gJd-wU-VCn"/>
+                                    <outlet property="chatImageView" destination="pNQ-0T-Q6h" id="Acl-5l-Z3Q"/>
+                                    <outlet property="chatTwoLettersLabel" destination="rLe-XQ-2xy" id="vtj-t9-a5j"/>
+                                    <segue destination="abT-Pw-qHS" kind="show" id="CdX-Im-yMV"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -447,7 +476,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4sC-TG-DKq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="527.536231884058" y="79.6875"/>
+            <point key="canvasLocation" x="622" y="80"/>
         </scene>
         <!--InviteContacts-->
         <scene sceneID="8JG-MN-TyA">

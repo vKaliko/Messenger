@@ -22,6 +22,7 @@
 		1095C1A824B3956F005B6D89 /* AddChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1095C1A724B3956F005B6D89 /* AddChatViewController.swift */; };
 		10B7975D243AF8B500476055 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B7975C243AF8B500476055 /* Extensions.swift */; };
 		10E4D3D324330701007CB0D9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E4D3D224330701007CB0D9 /* ProfileViewController.swift */; };
+		DB3D834F24CBA9A100727624 /* ChatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3D834E24CBA9A100727624 /* ChatsCell.swift */; };
 		DBAF4FB92415508B00CF7562 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAF4FB82415508B00CF7562 /* MessageCell.swift */; };
 		DBAF4FBB24155F8A00CF7562 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAF4FBA24155F8A00CF7562 /* ListViewController.swift */; };
 		DBAF4FBD241560D800CF7562 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAF4FBC241560D800CF7562 /* Chat.swift */; };
@@ -48,6 +49,7 @@
 		10E4D3D224330701007CB0D9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5DF59499E264D54FE41ED6DA /* Pods-Messenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.release.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.release.xcconfig"; sourceTree = "<group>"; };
 		849744ED1BC5BF6492EEDDDC /* Pods-Messenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.debug.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.debug.xcconfig"; sourceTree = "<group>"; };
+		DB3D834E24CBA9A100727624 /* ChatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsCell.swift; sourceTree = "<group>"; };
 		DBAF4FB82415508B00CF7562 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		DBAF4FBA24155F8A00CF7562 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		DBAF4FBC241560D800CF7562 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
@@ -94,8 +96,8 @@
 		105F88BB240D7C86005AA9F4 /* Messenger */ = {
 			isa = PBXGroup;
 			children = (
-				10CA18C1244AD50800FF3674 /* Messenger.entitlements */,
 				105F88D2240D7D73005AA9F4 /* Podfile */,
+				10CA18C1244AD50800FF3674 /* Messenger.entitlements */,
 				105F88BC240D7C86005AA9F4 /* AppDelegate.swift */,
 				105F88BE240D7C86005AA9F4 /* SceneDelegate.swift */,
 				DBAF4FBA24155F8A00CF7562 /* ListViewController.swift */,
@@ -106,6 +108,7 @@
 				10E4D3D224330701007CB0D9 /* ProfileViewController.swift */,
 				DBAF4FBC241560D800CF7562 /* Chat.swift */,
 				DBAF4FB82415508B00CF7562 /* MessageCell.swift */,
+				DB3D834E24CBA9A100727624 /* ChatsCell.swift */,
 				103173BB24876DB20009A893 /* ContactsCell.swift */,
 				10B7975C243AF8B500476055 /* Extensions.swift */,
 				105F88C4240D7C86005AA9F4 /* Main.storyboard */,
@@ -271,6 +274,7 @@
 				103173BA2484CF9A0009A893 /* InviteContactsViewController.swift in Sources */,
 				10E4D3D324330701007CB0D9 /* ProfileViewController.swift in Sources */,
 				DBAF4FBB24155F8A00CF7562 /* ListViewController.swift in Sources */,
+				DB3D834F24CBA9A100727624 /* ChatsCell.swift in Sources */,
 				1095C1A824B3956F005B6D89 /* AddChatViewController.swift in Sources */,
 				105F88BF240D7C86005AA9F4 /* SceneDelegate.swift in Sources */,
 			);

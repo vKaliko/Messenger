@@ -112,8 +112,32 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatsCell", for: indexPath) as! ChatsCell
         cell.textLabel?.text = chats[indexPath.row].title
+        for profile in Profile.allProfiles {
+            if profile.id != Auth.auth().currentUser!.uid {
+                
+            }
+                if let photo = profile.photo {
+                    cell.chatImageView?.isHidden = false
+                    cell.chatTwoLettersLabel?.isHidden = true
+                    cell.chatImageView?.image = photo
+                }
+                else {
+                    cell.chatImageView?.isHidden = true
+                    cell.chatTwoLettersLabel?.isHidden = false
+//                    let wordArray = name.split(separator: " ")
+//                    if wordArray.count >= 2 {
+//                        cell.chatTwoLettersLabel?.text = String(wordArray[0][wordArray[0].startIndex]) + String(wordArray[1][wordArray[1].startIndex])
+//                    }
+//                    else {
+//                        cell.chatTwoLettersLabel?.text = String(name[name.startIndex])
+//                    }
+                }
+            
+        }
+        
+        
         return cell
     }
     
