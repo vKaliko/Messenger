@@ -321,21 +321,17 @@
                             <outlet property="delegate" destination="0a6-ft-N9p" id="8mF-hZ-wnd"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Profile" id="86i-ED-Dkz">
-                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="pd0-iG-4cE">
+                    <navigationItem key="navigationItem" title="Profile" id="Auo-W4-s0a">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="mxo-EU-xcS">
                             <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="logOut" destination="0a6-ft-N9p" id="oZ3-Zc-VqK"/>
+                                <action selector="logOut" destination="0a6-ft-N9p" id="DWv-02-FBc"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="xmF-3Y-QnL">
-                            <connections>
-                                <action selector="done" destination="0a6-ft-N9p" id="xPd-Tj-6Sg"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="fY6-Mc-E9p"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="doneButton" destination="xmF-3Y-QnL" id="UZ6-Ed-Ydk"/>
+                        <outlet property="doneButton" destination="fY6-Mc-E9p" id="xY0-uY-jkG"/>
                         <outlet property="profilePhotoImageView" destination="z0u-o8-S66" id="sKV-Il-Lbx"/>
                         <outlet property="textField" destination="MnA-fl-ldo" id="JcY-cj-V96"/>
                     </connections>
@@ -406,18 +402,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatsCell" rowHeight="50" id="9Im-TU-BR7" customClass="ChatsCell" customModule="Messenger" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="50"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChatsCell" id="9Im-TU-BR7" customClass="ChatsCell" customModule="Messenger" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="40.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Im-TU-BR7" id="7CM-Xu-HRv">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="40.333332061767578"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="0Kw-Mt-BFX" userLabel="chatStackVIew">
-                                            <rect key="frame" x="20" y="5" width="374" height="40"/>
+                                            <rect key="frame" x="20" y="4.9999999999999982" width="343" height="30.333333333333329"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pNQ-0T-Q6h" userLabel="chatImageView">
-                                                    <rect key="frame" x="0.0" y="1.6666666666666643" width="30" height="37"/>
+                                                    <rect key="frame" x="0.0" y="1.6666666666666643" width="30" height="27.333333333333336"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="Tzu-i8-8bx"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="pMQ-N3-ksi"/>
@@ -425,7 +421,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLe-XQ-2xy" userLabel="chatTwoLetterLabel">
-                                                    <rect key="frame" x="60" y="0.0" width="30" height="40"/>
+                                                    <rect key="frame" x="60" y="0.0" width="30" height="30.333333333333332"/>
                                                     <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="6d6-z9-uRc"/>
@@ -436,7 +432,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ChatName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMF-WU-iZJ" userLabel="Title">
-                                                    <rect key="frame" x="120" y="0.0" width="254" height="40"/>
+                                                    <rect key="frame" x="120" y="0.0" width="223" height="30.333333333333332"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -453,8 +449,9 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="chatImageView" destination="pNQ-0T-Q6h" id="Acl-5l-Z3Q"/>
+                                    <outlet property="chatName" destination="UMF-WU-iZJ" id="0LQ-D3-sbP"/>
                                     <outlet property="chatTwoLettersLabel" destination="rLe-XQ-2xy" id="vtj-t9-a5j"/>
-                                    <segue destination="abT-Pw-qHS" kind="show" id="CdX-Im-yMV"/>
+                                    <segue destination="abT-Pw-qHS" kind="show" identifier="ShowChatSegue" id="CdX-Im-yMV"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

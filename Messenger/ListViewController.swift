@@ -57,6 +57,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
             }
             else {
                 var newProfiles = [Profile]()
+                var newDictProfiles = [String: Profile]()
                 for document in querySnapshot!.documents {
                     let d = document.data()
                     let p = Profile(dict: d, id: document.documentID)
@@ -72,8 +73,10 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                        }).resume()
                     }
                     newProfiles.append(p)
+                    newDictProfiles[p.id] = p
                 }
                 Profile.allProfiles = newProfiles
+                Profile.dictAllProfiles = newDictProfiles
                 self.fetchContacts()
             }
             
@@ -113,31 +116,25 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatsCell", for: indexPath) as! ChatsCell
-        cell.textLabel?.text = chats[indexPath.row].title
-        for profile in Profile.allProfiles {
-            if profile.id != Auth.auth().currentUser!.uid {
-                
-            }
-                if let photo = profile.photo {
-                    cell.chatImageView?.isHidden = false
-                    cell.chatTwoLettersLabel?.isHidden = true
-                    cell.chatImageView?.image = photo
-                }
-                else {
-                    cell.chatImageView?.isHidden = true
-                    cell.chatTwoLettersLabel?.isHidden = false
-//                    let wordArray = name.split(separator: " ")
-//                    if wordArray.count >= 2 {
-//                        cell.chatTwoLettersLabel?.text = String(wordArray[0][wordArray[0].startIndex]) + String(wordArray[1][wordArray[1].startIndex])
-//                    }
-//                    else {
-//                        cell.chatTwoLettersLabel?.text = String(name[name.startIndex])
-//                    }
-                }
-            
+        cell.chatName.text = chats[indexPath.row].title
+        var profile = Profile.dictAllProfiles[chats[indexPath.row].particip[0]]
+        let name = profile?.displayName ?? profile!.email
+        if let photo = profile?.photo {
+            cell.chatImageView?.isHidden = false
+            cell.chatTwoLettersLabel?.isHidden = true
+            cell.chatImageView?.image = photo
         }
-        
-        
+        else {
+            cell.chatImageView?.isHidden = true
+            cell.chatTwoLettersLabel?.isHidden = false
+            let wordArray = name.split(separator: " ")
+            if wordArray.count >= 2 {
+                cell.chatTwoLettersLabel?.text = String(wordArray[0][wordArray[0].startIndex]) + String(wordArray[1][wordArray[1].startIndex])
+            }
+            else {
+                cell.chatTwoLettersLabel?.text = String(name[name.startIndex])
+            }
+        }
         return cell
     }
     

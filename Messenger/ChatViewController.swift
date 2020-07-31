@@ -26,7 +26,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.prefersLargeTitles = false
         textView.delegate = self
-        title = chat.title
+        
+        title = chat.displayTitle //?? names
         textView.layer.cornerRadius = 7
         textView.clipsToBounds = true
         textView.layer.borderColor = UIColor.lightGray.cgColor

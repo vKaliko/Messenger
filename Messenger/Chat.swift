@@ -48,6 +48,10 @@ class Chat: Codable {
         return dict
     }
     
+    var displayTitle: String {
+        return title ?? particip[0]
+    }
+    
     
     
 }
@@ -80,6 +84,7 @@ class Message: Codable {
 
 class Profile {
     static var allProfiles: [Profile]!
+    static var dictAllProfiles: [String:Profile]!
     var id: String
     var email: String
     var displayName: String?

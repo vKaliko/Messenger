@@ -10,6 +10,7 @@ import UIKit
 
 class ChatsCell: UITableViewCell {
     
+    @IBOutlet weak var chatName: UILabel!
     @IBOutlet weak var chatImageView: UIImageView?
     @IBOutlet weak var chatTwoLettersLabel: UILabel?
     

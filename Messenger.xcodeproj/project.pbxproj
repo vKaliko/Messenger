@@ -50,6 +50,7 @@
 		5DF59499E264D54FE41ED6DA /* Pods-Messenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.release.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.release.xcconfig"; sourceTree = "<group>"; };
 		849744ED1BC5BF6492EEDDDC /* Pods-Messenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.debug.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.debug.xcconfig"; sourceTree = "<group>"; };
 		DB3D834E24CBA9A100727624 /* ChatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsCell.swift; sourceTree = "<group>"; };
+		DB3D835024D3901200727624 /* PrivacyPolicy.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = PrivacyPolicy.md; path = /Users/ikaliko/Documents/Projects/Messenger/Messenger/PrivacyPolicy.md; sourceTree = "<absolute>"; };
 		DBAF4FB82415508B00CF7562 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		DBAF4FBA24155F8A00CF7562 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		DBAF4FBC241560D800CF7562 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
@@ -96,6 +97,7 @@
 		105F88BB240D7C86005AA9F4 /* Messenger */ = {
 			isa = PBXGroup;
 			children = (
+				DB3D835024D3901200727624 /* PrivacyPolicy.md */,
 				105F88D2240D7D73005AA9F4 /* Podfile */,
 				10CA18C1244AD50800FF3674 /* Messenger.entitlements */,
 				105F88BC240D7C86005AA9F4 /* AppDelegate.swift */,

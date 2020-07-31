@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:PrivacyPolicy.md">
+      location = "group:/Users/ikaliko/Documents/Projects/Messenger/Messenger/PrivacyPolicy.md">
    </FileRef>
    <FileRef
       location = "group:Messenger.xcodeproj">
