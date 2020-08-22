@@ -17,6 +17,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
     
     var chats = [Chat]()
     var db: Firestore!
+    static var contactChats = [Chat]()
     static var contacts = [CNContact]()
     static var allContacts = [CNContact]()
     static var selectedArr = [String]()
@@ -203,6 +204,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                     guard let self = self else {
                       return
                     }
+                    var contactChats = [Chat]()
                     var filteredContacts = [CNContact]()
                     var filteredPhoneNumbers = [String]()
                     var filteredAllContacts = [CNContact]()
@@ -219,6 +221,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                                     if let contactEmail = contact.emailAddresses.first?.value {
                                         if contactEmail as String == profile.email {
                                             found = true
+                                            contactChats.append(Chat(profile.displayName ?? profile.email, id: profile.id, particip: [profile.id]))
                                             break
                                         }
                                     }
@@ -231,10 +234,6 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                                     filteredInviteContactsPhoneNumbers.append((contact.phoneNumbers.first?.value.stringValue)!)
                                 }
                             }
-                            else {
-                                //print("No phone number found")
-                            }
-                            //print(filteredContacts)
                         })
                     }
                     catch let err {
@@ -245,6 +244,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                         ListViewController.self.contactsPhoneNumbers = filteredPhoneNumbers
                         ListViewController.self.allContacts = filteredAllContacts
                         ListViewController.self.inviteContactsPhoneNumbers = filteredInviteContactsPhoneNumbers
+                        ListViewController.self.contactChats = contactChats
                         self.tableView.reloadData()
                     }
                 }

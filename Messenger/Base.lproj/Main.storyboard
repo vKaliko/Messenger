@@ -565,6 +565,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="contactNameLabel" destination="Frn-tT-goG" id="Gkh-ol-ya9"/>
+                                    <segue destination="abT-Pw-qHS" kind="show" id="Htt-8Y-jMP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -603,6 +604,9 @@
             <point key="canvasLocation" x="-275" y="-640"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Htt-8Y-jMP"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.up.circle.fill" catalog="system" width="128" height="121"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>

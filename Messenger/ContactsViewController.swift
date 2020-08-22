@@ -15,6 +15,10 @@ class ContactsViewController: UITableViewController {
     var allContacts = [CNContact]()
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -46,15 +50,17 @@ class ContactsViewController: UITableViewController {
           format: "phoneNumbers.@count > 0")
         present(contactPicker, animated: true, completion: nil)
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let inviteVC = segue.destination as! InviteContactsViewController
-//        inviteVC.contacts = Array(Set(allContacts).symmetricDifference(Set(ListViewController.contacts)))
-//        inviteVC.contactsPhoneNumbers = ListViewController.inviteContactsPhoneNumbers
-//    }
-    
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let chatVC = segue.destination as! ChatViewController
+        let cell = sender as! UITableViewCell
+        guard let row = tableView.indexPath(for: cell)?.row else {
+            return
+        }
+        chatVC.chat = ListViewController.contactChats[row]
+        
+    }
 }
+
 
 extension ContactsViewController: CNContactPickerDelegate, MFMessageComposeViewControllerDelegate {
     func contactPicker(_ picker: CNContactPickerViewController,
