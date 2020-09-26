@@ -90,10 +90,12 @@ class Profile {
     var displayName: String?
     var photoUrl: String?
     var photo: UIImage?
+    var token: String?
 
     
     init(dict: [String : Any], id: String) {
         self.id = id
+        self.token = dict["token"] as? String
         self.displayName = dict["displayName"] as? String
         self.email = dict["email"] as! String
         self.photoUrl = dict["photoUrl"] as? String

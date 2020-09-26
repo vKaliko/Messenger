@@ -4,7 +4,6 @@ const admin = require('firebase-admin');
 admin.initializeApp();
 
 const db = admin.firestore();
-
 /**
  * Creates a document with ID -> uid in the `Users` collection.
  *
@@ -17,12 +16,13 @@ const createProfile = (userRecord, context) => {
 	return db
 		.collection('profiles')
 		.doc(uid)
-		.set({ 'email': email, 'displayName': displayName, 'photoUrl': photoURL, 'token': "" })
+		.set({ 'email': email, 'displayName': displayName, 'photoUrl': photoURL})
 		.catch(console.error);
 };
 
 
 const sendNotification = (change, context) => {
+	console.log("Launched!");
 	const dict = change.after.data();
 	const allMessages = dict['messages'];
 	const lastMessage = allMessages[allMessages.length - 1];
@@ -37,7 +37,7 @@ const sendNotification = (change, context) => {
 	const registrationTokens = [];
 	for (profile in profiles) {
 		if (profile["id"] !== lastMessage["id"]) {
-			registrationTokens.append(profile["token"])
+			registrationTokens.append(profile["token"]);
 		}
 	}
 	const userDoc = userRef.get()
@@ -73,5 +73,5 @@ const sendNotification = (change, context) => {
 };
 module.exports = {
 	authOnCreate: functions.auth.user().onCreate(createProfile),
-	notifOnMessage: functions.firestore.document('chats/{chatId}').onUpdate(sendNotification),
+	notifOnMessage: functions.firestore.document('chatswuids/{chatId}').onUpdate(sendNotification),
 };

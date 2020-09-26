@@ -33,7 +33,7 @@
 		103173B92484CF9A0009A893 /* InviteContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteContactsViewController.swift; sourceTree = "<group>"; };
 		103173BB24876DB20009A893 /* ContactsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCell.swift; sourceTree = "<group>"; };
 		105F88B9240D7C86005AA9F4 /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		105F88BC240D7C86005AA9F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		105F88BC240D7C86005AA9F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		105F88BE240D7C86005AA9F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		105F88C5240D7C86005AA9F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		105F88C7240D7C89005AA9F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,9 +108,9 @@
 				10782EFC24AB917D0078D67B /* ContactsViewController.swift */,
 				103173B92484CF9A0009A893 /* InviteContactsViewController.swift */,
 				10E4D3D224330701007CB0D9 /* ProfileViewController.swift */,
-				DBAF4FBC241560D800CF7562 /* Chat.swift */,
 				DBAF4FB82415508B00CF7562 /* MessageCell.swift */,
 				DB3D834E24CBA9A100727624 /* ChatsCell.swift */,
+				DBAF4FBC241560D800CF7562 /* Chat.swift */,
 				103173BB24876DB20009A893 /* ContactsCell.swift */,
 				10B7975C243AF8B500476055 /* Extensions.swift */,
 				105F88C4240D7C86005AA9F4 /* Main.storyboard */,

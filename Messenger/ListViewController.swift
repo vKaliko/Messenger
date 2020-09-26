@@ -32,7 +32,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
         guard let user = Auth.auth().currentUser else {
             return
         }
-        db.collection("chatswuids").order(by: "title").whereField("particip", arrayContains: user.uid).addSnapshotListener { (querySnapshot, err) in
+        db.collection("chatswuids").whereField("particip", arrayContains: user.uid).addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Error fetching: \(err)")
             }
@@ -44,6 +44,12 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                     newChats.append(chat)
                 }
                 self.chats = newChats
+                if self.chats.count == 0 {
+                    self.navigationItem.leftBarButtonItem?.isEnabled = false
+                }
+                else {
+                    self.navigationItem.leftBarButtonItem?.isEnabled = true
+                }
                 self.tableView.reloadData()
             }
         }
@@ -51,6 +57,22 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        let storage = Storage.storage()
+//        let storageReference = storage.reference().child("files/uid")
+//        storageReference.listAll { (result, error) in
+//          if let error = error {
+//            print(error)
+//          }
+//            for item in result.items {
+//                item.getMetadata { metadata, error in
+//                  if let error = error {
+//                    print(error)
+//                  } else {
+//                    print(metadata?.size)
+//                  }
+//                }
+//            }
+//        }
         db = Firestore.firestore()
         db.collection("profiles").addSnapshotListener { (querySnapshot, err) in
             if let err = err {
@@ -79,6 +101,7 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
                 Profile.allProfiles = newProfiles
                 Profile.dictAllProfiles = newDictProfiles
                 self.fetchContacts()
+                self.tableView.reloadData()
             }
             
         }
@@ -93,6 +116,10 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
             if auth.currentUser == nil {
                 self.present(authUI.authViewController(), animated: true, completion: nil)
                 FUIAuth.defaultAuthUI()?.shouldHideCancelButton = true
+                
+            }
+            else {
+                UIApplication.shared.registerForRemoteNotifications()
             }
         }
         
@@ -118,28 +145,33 @@ class ListViewController: UITableViewController, FUIAuthDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatsCell", for: indexPath) as! ChatsCell
         cell.chatName.text = chats[indexPath.row].title
-        var profile = Profile.dictAllProfiles[chats[indexPath.row].particip[0]]
-        let name = profile?.displayName ?? profile!.email
-        if let photo = profile?.photo {
-            cell.chatImageView?.isHidden = false
-            cell.chatTwoLettersLabel?.isHidden = true
-            cell.chatImageView?.image = photo
-        }
-        else {
-            cell.chatImageView?.isHidden = true
-            cell.chatTwoLettersLabel?.isHidden = false
-            let wordArray = name.split(separator: " ")
-            if wordArray.count >= 2 {
-                cell.chatTwoLettersLabel?.text = String(wordArray[0][wordArray[0].startIndex]) + String(wordArray[1][wordArray[1].startIndex])
+        if Profile.dictAllProfiles != nil {
+            let profile = Profile.dictAllProfiles[chats[indexPath.row].particip[1]]
+            let name = profile?.displayName ?? profile!.email
+            if let photo = profile?.photo {
+                cell.chatImageView?.isHidden = false
+                cell.chatTwoLettersLabel?.isHidden = true
+                cell.chatImageView?.image = photo
             }
             else {
-                cell.chatTwoLettersLabel?.text = String(name[name.startIndex])
-            }
+                 cell.chatImageView?.isHidden = true
+                 cell.chatTwoLettersLabel?.isHidden = false
+                 let wordArray = name.split(separator: " ")
+                 if wordArray.count >= 2 {
+                     cell.chatTwoLettersLabel?.text = String(wordArray[0][wordArray[0].startIndex]) + String(wordArray[1][wordArray[1].startIndex])
+                 }
+                 else {
+                     cell.chatTwoLettersLabel?.text = String(name[name.startIndex])
+                 }
+             }
+             return cell
         }
-        return cell
+        else {
+            return tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        }
     }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let chatId = chats[indexPath.row].id
             db.collection("chatswuids").document(chatId).delete() { err in

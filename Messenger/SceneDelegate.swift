@@ -7,17 +7,56 @@
 //
 
 import UIKit
+import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var db: Firestore!
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+       
+//        db = Firestore.firestore()
+//        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+//
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
+//        let launchStoryboard: UIStoryboard = UIStoryboard(name: "LaunchScreen", bundle: nil)
+//        let launchViewController = launchStoryboard.instantiateViewController(withIdentifier: "LaunchViewController")
+//        self.window?.rootViewController = launchViewController
+//        self.window?.makeKeyAndVisible()
+        
+//        let docRef = db.collection("info").document("version")
+//        docRef.getDocument { (document, error) in
+//            if let document = document, document.exists {
+//                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+//                print("Document data: \(dataDescription)")
+//                if appVersion == dataDescription {
+//                    print("Don't need the update")
+//                }
+//                else {
+//                    let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//                    let updateViewController = storyboard.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
+//                    self.window?.rootViewController = launchViewController
+//                    self.window?.makeKeyAndVisible()
+//                    print("I need to update")
+//                }
+//            }
+//            else {
+//                print("Document does not exist")
+//            }
+//
+//        }
+//        self.window = self.window ?? UIWindow()
+//       let launchStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//       let launchViewController = launchStoryboard.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
+//        self.window?.rootViewController = launchViewController
+
+        // Create a ViewController object and_cene's window's root view controller.
+
+        // Make this scene's window be visible.
+//        self.window!.makeKeyAndVisible()
+
+        guard scene is UIWindowScene else { return }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

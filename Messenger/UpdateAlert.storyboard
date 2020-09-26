@@ -1,7 +1,40 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gTq-be-x1o">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="3C1-nw-suv">
+            <objects>
+                <viewController storyboardIdentifier="UpdateAlertViewController" id="gTq-be-x1o" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rM1-RZ-pxd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your version of the app is outdated, please update to the new one to keep using the app" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A81-f1-FGP">
+                                <rect key="frame" x="20" y="376.5" width="374" height="143.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="A81-f1-FGP" firstAttribute="centerY" secondItem="rM1-RZ-pxd" secondAttribute="centerY" id="Ju7-9I-wY2"/>
+                            <constraint firstItem="vfV-72-Qkv" firstAttribute="trailing" secondItem="A81-f1-FGP" secondAttribute="trailing" constant="20" id="R3B-BV-md1"/>
+                            <constraint firstItem="A81-f1-FGP" firstAttribute="leading" secondItem="vfV-72-Qkv" secondAttribute="leading" constant="20" id="j6X-9l-4zm"/>
+                            <constraint firstItem="A81-f1-FGP" firstAttribute="centerX" secondItem="rM1-RZ-pxd" secondAttribute="centerX" id="znl-dl-JZJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vfV-72-Qkv"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nEh-tz-JSQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-7667" y="-23"/>
+        </scene>
+    </scenes>
 </document>

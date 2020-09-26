@@ -53,7 +53,7 @@ class AddChatViewController: UITableViewController {
         }
         var selectedIds = [user.uid]
         var selectedNames = [String]()
-        var title = ""
+        var title = "" 
         if let arr = tableView.indexPathsForSelectedRows {
             for i in arr {
                 for profile in Profile.allProfiles {
